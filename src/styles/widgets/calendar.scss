@@ -1,0 +1,71 @@
+$day-width: 2rem;
+$day-margin: 1rem;
+$card-width: 15em;
+$card-height: calc((#{$day-width} + #{$day-margin}) * 7 + 1rem);
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    width: calc(#{$card-width} + #{$card-height} + 4rem);
+    margin: auto;
+}
+
+.day-card {
+    @extend .card;
+    width: $card-width;
+    height: $card-height;
+    padding: 2rem;
+    background: #bb0000;
+    color: white;
+    margin-right: 0;
+    z-index: 1;
+
+    .week-day {
+        font-size: 2.5rem;
+        margin: auto;
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    .month-day {
+        font-size: 8rem;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
+.month-card {
+    @extend .card;
+    width: calc(#{$card-height} + 2rem);
+    height: $card-width;
+    margin-top: calc((#{$card-height} - #{$card-width}) / 2);
+    margin-left: 0;
+    padding: 2rem;
+    background: white;
+    color: #444;
+
+    .month-name {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .calendar {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: calc((#{$day-width} + 1rem) * 7);
+        margin-top: 2rem;
+        // width: calc(#{$card-height} + 2rem);
+        // height: calc(#{$card-width} + 2rem);
+
+        .day {
+            width: $day-width;
+            height: $day-width;
+            margin-right: $day-margin;
+            margin-bottom: calc(#{$day-margin} / 4);
+            font-size: calc(#{$day-width} - #{$day-margin}) ;
+        }
+    }
+}
+

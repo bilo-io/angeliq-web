@@ -1,0 +1,36 @@
+.vision-viz.Table {
+    position: relative;
+    width: 100%;
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+        white-space: nowrap;
+        background-color: white;
+
+        thead {
+            background-color: lightgrey;
+            th {
+                resize: both;
+                padding: 1rem;
+                font-weight: bold;
+            }
+        }
+
+        tbody {
+            td {
+                text-align: center;
+                padding: 0.25rem;
+                &.sig-greater {
+                    background-color: rgba(limegreen, 0.5);
+                    color: green;
+                }
+
+                &.sig-less {
+                    background-color: rgba(pink, 0.5);
+                    color: red;
+                }
+            }
+        }
+    }
+}

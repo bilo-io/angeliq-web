@@ -1,0 +1,66 @@
+{
+    "better-comments.tags": [
+        {
+          "tag": "!",
+          "color": "#FF2D00",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "?",
+          "color": "#3498DB",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "//",
+          "color": "#474747",
+          "strikethrough": true,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "todo",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "*",
+          "color": "#98C379",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        }
+      ],
+      "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#fd6bd6",
+        "activityBar.activeBorder": "#b9fc03",
+        "activityBar.background": "#fd6bd6",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#b9fc03",
+        "activityBarBadge.foreground": "#15202b",
+        "statusBar.background": "#fc39c8",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#fb07ba",
+        "titleBar.activeBackground": "#fc39c8",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#fc39c899",
+        "titleBar.inactiveForeground": "#15202b99"
+      },
+      "peacock.color": "#fc39c8"
+}

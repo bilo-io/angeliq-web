@@ -1,0 +1,105 @@
+.editor-file {
+    width: 100%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    background-color: inherit;
+    color: inherit;
+    transition: all 0s ease-in-out;
+    &:hover {
+        cursor: pointer;
+        // background-color: white;
+        color: rgba($col-active, 0.75);
+    }
+
+    &.active {
+        color: $col-active;
+        font-weight: bold;
+    }
+}
+
+#file-upload-button {
+    margin-right: 1rem;
+}
+
+// TODO: merge with other scopes
+
+// .a-canvas {
+//     width: 20%!important;
+//     height: 20%!important;
+// }
+
+.auth {
+    max-width: 15rem;
+    height: 3rem;
+    background-color: transparent;
+    line-height: 3rem;
+    text-align: left;
+    padding: {
+        left: 1rem;
+        right: 1rem;
+    }
+    margin: 0.35rem;
+
+    $col-google: #de5246;
+    $col-github: #000000;
+    $col-facebook: #3b5998;
+
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin-top: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    &.google {
+        border: 1px solid $col-google;
+        color: $col-google;
+
+        &:hover {
+            color: white;
+            background-color: $col-google;
+        }
+    }
+
+    &.github {
+        border: 1px solid $col-github;
+        color: $col-github;
+
+        &:hover {
+            color: white;
+            background-color: $col-github;
+        }
+    }
+
+    &.facebook {
+        border: 1px solid ;
+        color: $col-facebook;
+
+        &:hover {
+            color: white;
+            background-color: $col-facebook;
+        }
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(0.9); opacity: 0.3; }
+    50% { -webkit-transform: scale(1); opacity: 1; }
+    100% { -webkit-transform: scale(0.9); opacity: 0.3; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.3; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.3; }
+}
+
+.pulsing {
+    -webkit-animation: pulse 3.4s infinite ease-in-out;
+    -o-animation: pulse 3.4s infinite ease-in-out;
+    -ms-animation: pulse 3.4s infinite ease-in-out;
+    -moz-animation: pulse 3.4s infinite ease-in-out;
+    animation: pulse 3.4s infinite ease-in-out;
+}

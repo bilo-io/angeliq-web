@@ -1,0 +1,1942 @@
+{
+	"info": {
+		"_postman_id": "7f8adf38-5670-45d5-8385-ae31bf974098",
+		"name": "Vision",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Identity.API",
+			"item": [
+				{
+					"name": "Init",
+					"item": [
+						{
+							"name": "Ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2e2bd770-f948-4e06-9c65-18508b57ac8c",
+										"exec": [
+											"pm.test(\"Is API working\", function() {",
+											"    const data = pm.response.json();",
+											"    pm.expect(data.name).to.eql(\"vision-identity-api\");",
+											"    const isCorrectVersion = data && data.version;",
+											"    tests[\"API: \"+ data.name + \" v\" + data.version] = isCorrectVersion;",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiUrl}}",
+									"host": [
+										"{{identityApiUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Routes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "556e2f1f-e7d4-4f2d-90ae-0d6546648233",
+										"exec": [
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData).to.eql({",
+											"    \"users\": {",
+											"        \"$schema\": {",
+											"            \"username\": {",
+											"                \"required\": true",
+											"            },",
+											"            \"email\": {",
+											"                \"required\": true",
+											"            },",
+											"            \"passwordHash\": {},",
+											"            \"alias\": {},",
+											"            \"image\": {},",
+											"            \"workspaceId\": {},",
+											"            \"createdAt\": {},",
+											"            \"updatedAt\": {}",
+											"        },",
+											"        \"create\": {",
+											"            \"method\": \"POST\",",
+											"            \"path\": \"/api/identity/users\"",
+											"        },",
+											"        \"delete\": {",
+											"            \"method\": \"DELETE\",",
+											"            \"path\": \"/api/identity/users/:id\"",
+											"        },",
+											"        \"get\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/identity/users\"",
+											"        },",
+											"        \"getById\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/identity/users/:id\"",
+											"        },",
+											"        \"update\": {",
+											"            \"method\": \"PATCH\",",
+											"            \"path\": \"/api/identity/users/:id\"",
+											"        }",
+											"    }",
+											"});",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{identityApiUrl}}/routes",
+									"host": [
+										"{{identityApiUrl}}"
+									],
+									"path": [
+										"routes"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d3a408c4-fbc2-4d04-a377-2db6a42f76c5",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"identityUserID\", data._id);",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"postman.test@vision.io\",\n    \"photoURL\": \"https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/batman-icon.png\",\n    \"username\": \"Postman\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/identity/users",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"identity",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6f3693b2-cf4e-4d51-b28a-321306856dde",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"postman.test@vision.io\",\n    \"photoURL\": \"https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/batman-icon.png\",\n    \"username\": \"Batman\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/identity/users/{{identityUserID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"identity",
+										"users",
+										"{{identityUserID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Slides.API",
+			"item": [
+				{
+					"name": "Init",
+					"item": [
+						{
+							"name": "Ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57016107-9420-44dd-8289-cdf9fa718417",
+										"exec": [
+											"pm.test(\"Is API working\", function() {",
+											"    const data = pm.response.json();",
+											"    pm.expect(data.name).to.eql(\"vision-slides-api\");",
+											"    const isCorrectVersion = data && data.version;",
+											"    tests[\"API: \"+ data.name + \" v\" + data.version] = isCorrectVersion;",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{slidesApiUrl}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Routes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aeb7506f-3f1d-4178-91d5-a70e7c850061",
+										"exec": [
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData).to.eql({",
+											"    \"slideshows\": {",
+											"        \"$schema\": {",
+											"            \"name\": {",
+											"                \"required\": true",
+											"            },",
+											"            \"author\": {},",
+											"            \"thumbnail\": {},",
+											"            \"slides\": {",
+											"                \"default\": []",
+											"            },",
+											"            \"workspaceId\": {},",
+											"            \"createdAt\": {},",
+											"            \"updatedAt\": {}",
+											"        },",
+											"        \"create\": {",
+											"            \"method\": \"POST\",",
+											"            \"path\": \"/api/slides/slideshows\"",
+											"        },",
+											"        \"delete\": {",
+											"            \"method\": \"DELETE\",",
+											"            \"path\": \"/api/slides/slideshows/:id\"",
+											"        },",
+											"        \"get\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/slideshows\"",
+											"        },",
+											"        \"getById\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/slideshows/:id\"",
+											"        },",
+											"        \"update\": {",
+											"            \"method\": \"PATCH\",",
+											"            \"path\": \"/api/slides/slideshows/:id\"",
+											"        }",
+											"    },",
+											"    \"schedules\": {",
+											"        \"$schema\": {",
+											"            \"name\": {",
+											"                \"required\": true",
+											"            },",
+											"            \"description\": {},",
+											"            \"events\": {",
+											"                \"default\": []",
+											"            },",
+											"            \"workspaceId\": {},",
+											"            \"createdAt\": {},",
+											"            \"updatedAt\": {}",
+											"        },",
+											"        \"create\": {",
+											"            \"method\": \"POST\",",
+											"            \"path\": \"/api/slides/schedules\"",
+											"        },",
+											"        \"delete\": {",
+											"            \"method\": \"DELETE\",",
+											"            \"path\": \"/api/slides/schedules/:id\"",
+											"        },",
+											"        \"get\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/schedules\"",
+											"        },",
+											"        \"getById\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/schedules/:id\"",
+											"        },",
+											"        \"update\": {",
+											"            \"method\": \"PATCH\",",
+											"            \"path\": \"/api/slides/schedules/:id\"",
+											"        }",
+											"    },",
+											"    \"screens\": {",
+											"        \"$schema\": {",
+											"            \"name\": {",
+											"                \"required\": true",
+											"            },",
+											"            \"author\": {},",
+											"            \"thumbnail\": {},",
+											"            \"slides\": {",
+											"                \"default\": []",
+											"            },",
+											"            \"workspaceId\": {},",
+											"            \"createdAt\": {},",
+											"            \"updatedAt\": {}",
+											"        },",
+											"        \"create\": {",
+											"            \"method\": \"POST\",",
+											"            \"path\": \"/api/slides/screens\"",
+											"        },",
+											"        \"delete\": {",
+											"            \"method\": \"DELETE\",",
+											"            \"path\": \"/api/slides/screens/:id\"",
+											"        },",
+											"        \"get\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/screens\"",
+											"        },",
+											"        \"getById\": {",
+											"            \"method\": \"GET\",",
+											"            \"path\": \"/api/slides/screens/:id\"",
+											"        },",
+											"        \"update\": {",
+											"            \"method\": \"PATCH\",",
+											"            \"path\": \"/api/slides/screens/:id\"",
+											"        }",
+											"    }",
+											"});",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/routes",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Seed - Slideshows",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a92b27fb-553c-4a00-a9d9-7c9535dd9a67",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"SEED-PostmanTest-Slideshow\",\n    \"description\": \"Testing from REST Client in VSCode\",\n    \"slides\": [\n        {\n            \"tiles\": [\n                {\n                    \"type\": \"widget:youtube\"\n                }\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Slideshows",
+					"item": [
+						{
+							"name": "Create a Slideshow",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d6d171f5-ff27-40a3-844a-abb62e332f96",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"slidesSlideshowID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PostmanTest-Slideshow\",\n    \"description\": \"Testing from REST Client in VSCode\",\n    \"slides\": [\n        {\n            \"tiles\": [\n                {\n                    \"type\": \"widget:youtube\"\n                }\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Slideshows",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bbb8b77f-299e-4e69-bce8-454657bd6e39",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Slideshow by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "abc86ecc-09bc-4f05-bb1b-cc08f6fc01cd",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows/{{slidesSlideshowID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows",
+										"{{slidesSlideshowID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Slideshow",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5ca26566-91a0-4121-9b15-d7c35c1c8b82",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Another\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows/{{slidesSlideshowID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows",
+										"{{slidesSlideshowID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Slideshow",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "94f72da0-e5ca-4293-bdb9-8fefcc580972",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/slideshows/{{slidesSlideshowID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"slideshows",
+										"{{slidesSlideshowID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Screens",
+					"item": [
+						{
+							"name": "Create a Screen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bbbf380f-55ac-4309-87f8-3e2d99a259da",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"slidesScreenID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PostmanTest-Screen\",\n    \"description\": \"Testing from Postman Client in VSCode\",\n    \"code\": \"easy\",\n    \"status\": {\n        \"health\": \"UNASSIGNED\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/screens",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"screens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Screens",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "85574d56-216b-4ee3-a250-285fe8be68ec",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/screens",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"screens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Screen by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "53e23212-1c30-4e7c-b207-bfd46f058b10",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/screens/{{slidesScreenID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"screens",
+										"{{slidesScreenID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Screen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "050bc347-442a-42fa-ad65-463267e8d797",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Another\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/screens/{{slidesScreenID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"screens",
+										"{{slidesScreenID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Screen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "be64a8c4-d420-4242-b52e-052312965de3",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/screens/{{slidesScreenID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"screens",
+										"{{slidesScreenID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Schedules",
+					"item": [
+						{
+							"name": "Create a Schedule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f377e90-7969-4716-b6aa-079adcbd3a1b",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"slidesScheduleID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PostmanTest-Schedule\",\n    \"description\": \"Testing from Postman Client in VSCode\",\n    \"events\": [\n\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/schedules",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"schedules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Schedules",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "931ee8ab-651a-486a-b492-fae44d7c1229",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/schedules",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"schedules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Schedule by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4f870154-5c66-4205-b3b5-7045d5fa2e2c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/schedules/{{slidesScheduleID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"schedules",
+										"{{slidesScheduleID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Schedule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "125701e5-e23a-4eac-bffd-50d185207a8d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Another\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/schedules/{{slidesScheduleID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"schedules",
+										"{{slidesScheduleID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Schedule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1ab43e48-6ab4-4040-a81e-081157b92073",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{slidesApiUrl}}/slides/schedules/{{slidesScheduleID}}",
+									"host": [
+										"{{slidesApiUrl}}"
+									],
+									"path": [
+										"slides",
+										"schedules",
+										"{{slidesScheduleID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Schools.API",
+			"item": [
+				{
+					"name": "Init",
+					"item": [
+						{
+							"name": "Ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "55d25df0-dd29-4b26-8e4c-f21ee7d5b094",
+										"exec": [
+											"pm.test(\"Is API working\", function() {",
+											"    const data = pm.response.json();",
+											"    pm.expect(data.name).to.eql(\"vision-schools-api\");",
+											"    ",
+											"    const isCorrectVersion = data && data.version;",
+											"    tests[\"API: \"+ data.name + \" v\" + data.version] = isCorrectVersion;",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{schoolsApiUrl}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Courses",
+					"item": [
+						{
+							"name": "Create a Course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e56cb490-3382-482a-a607-6faa2c416419",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"schoolsCourseID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"name\": \"POSTMAN test course\",\n        \"subject\": \"science\",\n        \"tags\": [\n            \"science\",\n            \"physics\"\n        ],\n        \"duration\": 30,\n        \"description\": \"An intro to fundamental mechanics and laws of motion in physics.\",\n        \"difficulty\": \"easy\",\n        \"thumbnail\": \"https://i.pinimg.com/736x/08/5c/0c/085c0c80b83fbf09777d4d5f352746a1.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/courses",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Courses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9d7ae50-9780-44d8-8ef8-882cf1abb739",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/courses",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Course by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b93c3fc5-6556-4fde-ba34-754b932f5d75",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/courses/{{schoolsCourseID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"courses",
+										"{{schoolsCourseID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e75ec6c4-549b-4294-ad89-7055bc9d8ddb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tags\": [\n        \"science\",\n        \"astronomy\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/courses/5f3c2a8e6f48ec2159e2bf0d",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"courses",
+										"5f3c2a8e6f48ec2159e2bf0d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "817dd505-12d1-4128-bf51-0268bfdf130c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/courses/{{schoolsCourseID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"courses",
+										"{{schoolsCourseID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Evaluations",
+					"item": [
+						{
+							"name": "Create an Evaluation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f19493c-3aa0-40cc-80b9-ab542a6b698c",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"schoolsEvaluationID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"name\": \"POSTMAN test course\",\n        \"subject\": \"science\",\n        \"tags\": [\n            \"science\",\n            \"physics\"\n        ],\n        \"duration\": 30,\n        \"description\": \"An intro to fundamental mechanics and laws of motion in physics.\",\n        \"difficulty\": \"easy\",\n        \"thumbnail\": \"https://i.pinimg.com/736x/08/5c/0c/085c0c80b83fbf09777d4d5f352746a1.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Evaluations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f4a8f03-10e6-40f4-a042-8ff31417030d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch an Evaluation by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce619cfe-59a5-4945-b1c1-3e6d3467f873",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations/{{schoolsEvaluationID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations",
+										"{{schoolsEvaluationID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch an Evaluations by query => type: 'Test'",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0cb4e15b-4802-4704-99be-1585b8f458bc",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations?type=test",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "test"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch an Evaluations by query => type: 'Quiz'",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c4dc94fe-0d93-4c5a-b642-29790a68a120",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations?type=quiz",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "quiz"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch an Evaluations by query => type: 'Exam'",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b4c9e8cb-6ff6-4b55-8408-090341b39a99",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations?type=exam",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "exam"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Evaluation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a3935c89-5364-4de6-a5ca-e427c24585e1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tags\": [\n        \"science\",\n        \"astronomy\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations/{{schoolsEvaluationID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations",
+										"{{schoolsEvaluationID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an Evaluation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b7d43927-a0fa-4610-bf80-5436df9f1ef1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/evaluations/{{schoolsEvaluationID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"evaluations",
+										"{{schoolsEvaluationID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Certificates",
+					"item": [
+						{
+							"name": "Create a Certificate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7cf6894a-e331-4fdf-a118-be9d05554b61",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    const data = pm.response.json();",
+											"    pm.environment.set(\"schoolsCertificateID\", data._id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"name\": \"POSTMAN test course\",\n        \"subject\": \"science\",\n        \"tags\": [\n            \"science\",\n            \"physics\"\n        ],\n        \"duration\": 30,\n        \"description\": \"An intro to fundamental mechanics and laws of motion in physics.\",\n        \"difficulty\": \"easy\",\n        \"thumbnail\": \"https://i.pinimg.com/736x/08/5c/0c/085c0c80b83fbf09777d4d5f352746a1.jpg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all Certficates",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fd976919-c439-45d5-bf48-354ee080e741",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    const data = pm.response.json() || [];",
+											"    if (data && data.length) {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = true;",
+											"    } else {",
+											"        tests[\"Count: (\" + data.length + \") is larger than 0\"] = false;",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Certficate by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0cd9ea5c-0371-4263-bb6c-9c183948b3ce",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates/{{schoolsCertificateID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates",
+										"{{schoolsCertificateID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch a Certficate by query => tags: 'science'",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "20a264d1-e17b-43b1-9e28-fda5fb1cddab",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates?type=test",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "test"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Certficate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "415e2254-e29e-46cf-9226-07a96b1ac91e",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tags\": [\n        \"science\",\n        \"astronomy\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates/{{schoolsCertificateID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates",
+										"{{schoolsCertificateID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Certficate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ddc4e6e1-6efa-415e-a0be-ab5bb8f51688",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Course Name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{schoolsApiUrl}}/schools/certificates/{{schoolsCertificateID}}",
+									"host": [
+										"{{schoolsApiUrl}}"
+									],
+									"path": [
+										"schools",
+										"certificates",
+										"{{schoolsCertificateID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

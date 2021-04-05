@@ -1,0 +1,29 @@
+.weather-container {
+    position: relative;
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
+    padding: 1rem;
+
+    &.day {
+        color: white;
+        background: rgb(212,213,126);
+        background: linear-gradient(137deg, rgba(212,213,126,1) 4%, rgba(113,113,246,1) 28%, rgba(55,149,208,1) 91%);
+    }
+
+    &.night {
+        color: white;
+        background: rgb(126,187,213);
+        background: linear-gradient(137deg, rgba(126,187,213,1) 4%, rgba(4,4,247,1) 28%, rgba(2,0,36,1) 91%);
+    }
+
+    $digital-font-size: 2rem;
+    .summary {
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .temperature {
+            font-size: $digital-font-size;
+        }
+    }
+}

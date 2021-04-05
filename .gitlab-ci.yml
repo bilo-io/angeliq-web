@@ -1,0 +1,184 @@
+image: cypress/base:10
+
+stages:
+  # - docker
+  - setup
+  - build
+  - test
+  - deploy
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - dist
+    - artifact
+    - coverage
+    - cache/Cypress
+    - node_modules
+# ========================
+# STAGE: setup
+# ------------------------
+install_cypress:
+  stage: setup
+  script:
+    - npm install --force
+    - $(npm bin)/cypress cache path
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
+# ========================
+# STAGE: build
+# ------------------------
+build_dist:
+  stage: build
+  allow_failure: true
+  script:
+      # - echo "skipping build"
+      - npm run build:dist
+  # only:
+  #     - merge_requests
+# ------------------------
+build_electron:
+  image: electronuserland/builder:wine
+  stage: build
+  script:
+    - echo "skipping electron build"
+    # - npm run build:electron
+  artifacts:
+    expire_in: 30 days
+    paths:
+      - ./electron/
+  allow_failure: true
+  only:
+    - master
+# ========================
+# STAGE: test
+# ------------------------
+# code_quality:
+#   image: node:10-alpine
+#   stage: test
+#   script:
+#     - npm ci
+#     - npx eslint --format gitlab .
+#   artifacts:
+#     reports:
+#       codequality: gl-codequality.json
+# ------------------------
+# unit_test:
+#   stage: test
+#   script:
+#     - npm run ci:test:unit
+#   after_script:
+#     - bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}"
+#   coverage: /Statements.*?(\d+(?:\.\d+)?)%/
+#   artifacts:
+#     when: always
+#     paths:
+#       - coverage
+#     reports:
+#       junit:
+#         - coverage/lcov-report/TEST-*.xml
+#  # only:
+#  # - merge_requests
+# ------------------------
+# e2e_test:
+#   image: cypress/base:10
+#   stage: test
+#   script:
+#     - npm run ci:test:chrome
+#   after_script:
+#     - npm run ci:cypress:coverage
+#   coverage: /Statements.*?(\d+(?:\.\d+)?)%/
+#   artifacts:
+#     expire_in: 1 week
+#     when: always
+#     paths:
+#     - coverage
+#     - cypress/screenshots
+#     - cypress/videos
+#     reports:
+#       junit:
+#         - results/TEST-*.xml
+# ========================
+# STAGE: deploy
+# ------------------------
+deploy_sandbox:
+  stage: deploy
+  environment:
+    name: sandbox
+    url: https://vis-ion.gitlab.io/studio
+  script:
+    - mkdir .public
+    - cp -r artifact/* .public
+    - mv .public public
+    - mkdir public/coverage
+    - cp -r coverage/lcov-report/* public/coverage
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+  - sandbox
+  allow_failure: true
+# ------------------------
+deploy_staging:
+  stage: deploy
+  environment:
+    name: staging
+    url: https://vis-ion.gitlab.io/studio
+  script:
+    - mkdir .public
+    - cp -r artifact/* .public
+    - mv .public public
+    - mkdir public/coverage
+    - cp -r coverage/lcov-report/* public/coverage
+  artifacts:
+    paths:
+    - public
+  when: manual
+  only:
+  - staging
+  - master
+# ------------------------
+deploy_production:
+  stage: deploy
+  environment:
+    name: production
+    url: https://vis-ion.gitlab.io/studio
+  script:
+  - mkdir .public
+  - cp -r artifact/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  when: manual
+  only:
+  - master
+
+# ========================
+# STAGE: docker
+# ------------------------
+# build_docker_image:
+#   image: docker:git
+#   stage: build
+#   services:
+#     - docker:dind
+#   variables:
+#     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+#     TEST_IMAGE: registry.gitlab.com/vis-ion/slides:$CI_COMMIT_REF_NAME
+#     RELEASE_IMAGE: registry.gitlab.com/vis-ion/slides:latest
+#   before_script:
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#     - apk add --update make
+#     - docker pull registry.gitlab.com/vis-ion/slides:latest
+#   script:
+#     - docker run registry.gitlab.com/vis-ion/slides:latest
+#  #   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.example.com
+#  #   - docker build -t registry.example.com/my-group/my-project .
+#  #   - docker run registry.example.com/my-group/my-project /script/to/run/tests
+#  #   - docker push registry.example.com/my-group/my-project:latest

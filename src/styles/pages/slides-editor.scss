@@ -1,0 +1,30 @@
+.thumbnail-preview {
+    width: 12rem;
+    height: auto;
+    margin: auto;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.slide-divider {
+    @extend .flex-row;
+    @extend .space-around;
+
+    color: #ddd;
+    background: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .line {
+        border-bottom: 2px solid #eee;
+        flex-grow: 1;
+        height: 0.5rem;
+    }
+
+    .text {
+        margin: {
+            left: 2rem;
+            right: 2rem;
+        }
+    }
+}

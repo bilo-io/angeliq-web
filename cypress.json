@@ -1,0 +1,12 @@
+{
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "results/TEST-[hash].xml"
+  },
+  "env": {
+    "codeCoverage": {
+      "url": "http://localhost:8080/__coverage__"
+    }
+  },
+  "projectId": "z71uxd"
+}

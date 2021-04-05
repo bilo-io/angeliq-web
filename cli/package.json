@@ -1,0 +1,12 @@
+{
+  "name": "vision-cli",
+  "version": "0.0.1",
+  "description": "A CLI to create and maintain vision like apps",
+  "main": "vision-cli.js",
+  "scripts": {
+    "start": "node vision-cli.js",
+    "test": "test"
+  },
+  "author": "Bilo Lwabona",
+  "license": "ISC"
+}

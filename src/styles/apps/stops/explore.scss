@@ -1,0 +1,12 @@
+.transit-card {
+    background-color: white;
+    color: $col-text;
+    width: calc(100% - 3rem)!important;
+    border-radius: 2px;
+
+    margin: {
+        left: 0.5rem!important;
+        right: 0.5rem!important;
+        top: 0.5rem!important;
+    }
+}

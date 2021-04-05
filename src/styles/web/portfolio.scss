@@ -1,0 +1,75 @@
+.portfolio {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    top: 0;
+    background-color: #222;
+    color: #ccc;
+}
+.profile {
+    @extend .flex-row;
+    widtH: 30rem;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+
+    .title {
+        margin-top: 0rem;
+        width: 7rem;
+    }
+
+    img {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 6rem;
+        margin-right: 2rem;
+    }
+
+    .name {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+    }
+}
+.experience {
+    @extend .flex-row;
+    widtH: 30rem;
+    margin: auto;
+    margin-top: 2rem;
+
+    img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 4rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .dates {
+        margin-top: 1rem;
+    }
+
+    .header {
+        min-height: 6rem;
+
+        .company-name {
+            font-weight: lighter;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .employee-title {
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .role {
+            height: 3rem;
+            line-height: 3rem;
+        }
+    }
+
+}

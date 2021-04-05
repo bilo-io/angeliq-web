@@ -1,0 +1,52 @@
+# REF: https://docs.codecov.io/docs/notifications#branches
+codecov:
+  require_ci_to_pass: no
+  bot: "code-cov"
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+  notify:
+    slack:
+      default:
+        url: "https://hooks.slack.com/services/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"
+        threshold: 1%
+        only_pulls: false
+        branches:
+          - "master"
+        flags:
+          - "unit"
+        paths: 
+          - "src"
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+  javascript:
+    enable_partials: yes
+
+comment:
+  layout: "reach,diff,flags,filestree"
+  behavior: default
+  require_changes: false  # if true: only post the comment if coverage changes
+  require_base: no        # [yes :: must have a base report to post]
+  require_head: yes       # [yes :: must have a head report to post]
+  branches:               # branch names that can post comment
+    - "master"
+
+  # Slack Webhooks:
+frontui:
+  url: "https://hooks.slack.com/services/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"
+  flags:
+    - frontend
+    - ui
+backunit:
+  url: "https://hooks.slack.com/services/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"
+  threshold: 2%  # allow coverage to drop by 2% without posting a notification
+  flags:
+    - backend

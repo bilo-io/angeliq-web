@@ -1,0 +1,120 @@
+$col-dark-panel: #333;
+.panel {
+    position: relative;
+    width: 100%;
+    // height: auto;
+    min-height: 40rem;
+    // max-height: 150%;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    // overflow: hidden;
+    // overflow-y: auto;
+
+    h1,h2,h3,h4 {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        // margin-bottom: 2rem;
+    }
+
+    .panel-content {
+        position: relative;
+        width: calc(100% - 6rem);
+        padding: 3rem;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+    &.black {
+        background-color: #111;
+        color: #eee;
+
+        .panel-content {
+            @extend .panel-content;
+        }
+    }
+    &.dark {
+        background-color: rgba($col-dark-panel, 0.9);
+        color: #fff;
+
+        .panel-content {
+            @extend .panel-content;
+        }
+    }
+    &.light {
+        background-color: #CCCCCC;//rgba(#eee, 0.7);
+        color: black;
+
+        .panel-content {
+            @extend .panel-content;
+        }
+    }
+
+    .quote {
+        font-size: 1.5rem;
+        text-align: center;
+        font-style: italic;
+    }
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+
+    .logo {
+        width: 6rem;
+        height: auto;
+    }
+}
+
+$col-gradient-start: #333;
+$col-gradient-end: #00adee;
+
+#gradient-title {
+    background-image: linear-gradient(to bottom, $col-gradient-start, darken($col-gradient-end, 10%));
+}
+
+#gradient {
+    background-image: linear-gradient(to bottom, $col-gradient-end, darken($col-gradient-end, 30%));
+}
+
+$full-vid-width: calc(100vw - 4rem + 3px);
+$full-vid-height: calc(#{$full-vid-width} / (16 / 9));
+.video-panel {
+    position: relative;
+    // width: $full-vid-width;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: rgba(#000, 0.2);
+    text-align: center;
+    img {
+        width: 6rem;
+        height: 6rem;
+        margin-top: 4rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        padding-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    button {
+        @extend .round;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        height: 3em;
+    }
+}

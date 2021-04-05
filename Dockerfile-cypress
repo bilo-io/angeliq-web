@@ -1,0 +1,39 @@
+FROM cypress/base:10
+
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+
+RUN echo "======================================================"
+RUN echo "Docker setup: started"
+RUN echo "======================================================"
+
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN echo "======================================================"
+RUN echo "Docker setup: installing dependencies"
+RUN echo "======================================================"
+
+RUN npm install --silent
+# If you are building your code for production
+# RUN npm ci --only=production
+
+RUN echo "======================================================"
+RUN echo "Docker setup: copying source"
+RUN echo "======================================================"
+
+# COPY . .
+
+RUN echo "======================================================"
+RUN echo "Docker setup: complete"
+RUN echo "======================================================"
+
+RUN pwd
+RUN ls -la
+
+RUN echo "======================================================"
+RUN echo "Docker setup: running server on 8080"
+RUN echo "======================================================"
+
+# EXPOSE 8080
+# CMD [ "npm run", "dev" ]
