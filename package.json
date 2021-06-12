@@ -8,7 +8,7 @@
   },
   "homepage": ".",
   "build": {
-    "appId": "io.vis-ion.studio",
+    "appId": "angeliq-web",
     "files": [
       "dist/**/*",
       "node_modules/**/*",
