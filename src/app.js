@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 
 // #region Components
 import AppMenu from './components/app-menu'
+import AppBar from './components/app-bar'
 import Async from './components/async'
 import Navbar from './components/navbar/mobile'
 import { Toaster } from './components/toaster'
@@ -30,7 +31,7 @@ import {
 } from 'data/redux/session/actions'
 import './styles/index.scss'
 import './assets/favicon.ico'
-import visionLogo from 'img/vision-logo.png'
+import visionLogo from 'img/angelic-pink.png'
 import pkg from '../package.json'
 import {
     fetchIPAddress,
@@ -156,11 +157,16 @@ export const App = (props) => {
         >
             {
                 isInitialising
-                    ? <div className='page flex-col' style={{ paddingTop: 'calc(10% - 4rem)' }}>
+                    ? <div className='page flex-col' style={{ paddingTop: 'calc(10% + 4rem)' }}>
                         <div className='loader' />
                         <img className='pulsing' src={ visionLogo } style={ logoStyle } />
                     </div>
                     : <div className='layout'>
+                        <ErrorBoundary>
+                            <AppBar
+                                toggleAppMenu={toggleAppMenu}
+                            />
+                        </ErrorBoundary>
                         <Async
                             isLoading={ isLoading.ipAddress }
                             onMount={ initialize }
@@ -170,12 +176,12 @@ export const App = (props) => {
                                     onToggle={ toggleAppMenu }
                                     items={[
                                         {
-                                            icon: 'heart',
-                                            path: '/app/matches'
+                                            icon: 'cog',
+                                            path: '/app/settings'
                                         },
                                         {
-                                            icon: 'comment',
-                                            path: '/app/chat'
+                                            icon: 'heart',
+                                            path: '/app/likes'
                                         },
                                         {
                                             icon: 'search',
@@ -183,31 +189,31 @@ export const App = (props) => {
                                             main: true
                                         },
                                         {
-                                            icon: 'user',
-                                            path: '/app/profile'
+                                            icon: 'comment',
+                                            path: '/app/chat'
                                         },
                                         {
-                                            icon: 'cog',
-                                            path: '/app/settings'
+                                            icon: 'user',
+                                            path: '/app/profile'
                                         }
                                     ]}
                                     // openVideoModal={ () => props.setVideoModal(true) }
                                 />
                             </ErrorBoundary>
-                            {/*
+
                             <ErrorBoundary>
                                 <AppMenu
                                     appName={'studio.vis-ion'}
                                     appVersion={ pkg.version }
                                     isOpen={ isAppMenuOpen }
-                                    theme={ 'dark' }
+                                    theme={ 'light' }
                                     onToggle={ toggleAppMenu }
                                     socialAccount={{
                                         instagram: 'http://www.instagram.com/bilo_lwabona',
                                         github: 'http://www.github.com/bilo-io'
                                     }}
                                 />
-                            </ErrorBoundary> */}
+                            </ErrorBoundary>
                             {/* <Async
                                 isLoading={ isLoading.country }
                                 onMount={ fetchCountry }

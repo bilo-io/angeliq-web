@@ -1,0 +1,12 @@
+.rc-slider-track {
+    background-color: $col-active!important;
+}
+
+.rc-slider-handle {
+    border-color: $col-active!important;
+    background-color: $col-active!important;
+
+    &-dragging {
+        border-color: $col-active!important;
+    }
+}

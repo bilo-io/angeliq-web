@@ -7,6 +7,7 @@
 @import './overrides/react-grid-layout.scss';
 @import './overrides/react-highlight-words.scss';
 @import './overrides/react-split-pane.scss';
+@import './overrides/rc-slider.scss';
 
 // Charts
 @import './charts/table.scss';
@@ -15,6 +16,7 @@
 @import './components/accordion.scss';
 @import './components/app-menu.scss';
 @import './components/card.scss';
+@import './components/chat.scss';
 @import './components/checkbox.scss';
 @import './components/explorer.scss';
 @import './components/error-boundary.scss';
@@ -102,6 +104,10 @@ $fade-duration: .3s;
     h4 {
         margin-bottom: 0;
     }
+}
+
+.padded-width {
+    width: calc(100% - 2rem);
 }
 
 .page {
@@ -230,6 +236,10 @@ $fade-duration: .3s;
         background-color: rgba($col-active, 0.3);
     }
 
+    &:focus {
+        background-color: inherit;
+    }
+
     @extend .colors;
 
     &.round {
@@ -288,6 +298,19 @@ input {
 
     &.full-width {
         width: calc(100% - 1rem);
+    }
+}
+
+.aq-input {
+    border-radius: 6px;
+    border: 2px solid $col-angelic-pink;
+    min-height: 3rem;
+    line-height: 1.5rem;
+    width: calc(100% - 0.5rem);
+    font-family: 'Quicksand', sans-serif;
+
+    &:focus {
+        border-color: $col-angelic-purple;
     }
 }
 
@@ -429,5 +452,55 @@ $doc-index-width: 12rem;
                 border-bottom: 1px solid $col-active;
             }
         }
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    // Chrome & Safari
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+select {
+    background-color: $col-angelic-pink;
+    border-radius: 2rem;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+
+    &:focus {
+        border: none;
+    }
+
+    option {
+
+    }
+}
+
+input[type="range"] {
+    // width: 100%;
+    color: $col-active!important;
+
+    &::-webkit-slider-thumb {
+        background-color: $col-active;
+    }
+    &::-moz-range-thumb {
+        background-color: $col-active;
+    }
+    &::-ms-thumb {
+        background-color: $col-active;
+    }
+
+    /***** These are to edit the thumb and the text inside the thumb *****/
+    & + .thumb {
+        background-color: #dedede;
+    }
+    & + .thumb.active .value {
+        color: $col-active;
     }
 }

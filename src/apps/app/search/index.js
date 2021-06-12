@@ -4,11 +4,13 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import FAIcon from 'react-fontawesome'
 // #endregion Modules
 
 import {
-    Avatar
+    Card
 } from 'components'
+import { ProfileCard } from '../profile/card'
 
 // #region Misc
 import {
@@ -16,6 +18,8 @@ import {
     addToast,
     setVideoModal
 } from 'data/redux/session/actions'
+import data from 'data/mock/search'
+import { AQPink } from 'util/colors'
 // #endregion
 
 const mapStateToProps = (state, ownProps) => {
@@ -29,21 +33,44 @@ const mapActionsToProps = dispatch => bindActionCreators({
     setVideoModal
 }, dispatch)
 
-export class Search extends Component {
-    render () {
-        const { user } = this.props
-        return (
-            <div className='page'>
-                <div className='page-header padded flex-row space-between'>
-                    Search
-                </div>
-                <div className='divider horizontal' />
-                <div className='padded'>
-                    <Avatar user={ user } />
-                </div>
-            </div>
-        )
+export const Search = ({ user }) => {
+    const [activeIndex, setActiveIndex] = React.useState(0)
+    const [isMobile, setIsMobile] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
+
+    const changeIndex = (diff) => {
+        setLoading(true)
+        const newIndex = activeIndex + diff
+        setActiveIndex(newIndex >= data.length ? 0 : newIndex)
+        setTimeout(() => setLoading(false), 500)
     }
+
+    React.useEffect(() => {
+        setIsMobile(visualViewport.width <= 512)
+    }, [visualViewport.width])
+
+    return (
+        <div className='page'>
+            {/* <div className='page-header padded flex-row space-between'>
+                </div> */}
+            <div className='divider horizontal' />
+            <div className='padded'>
+                <div style={{ marginTop: '3rem' }} />
+                {
+                    loading
+                        ? <div className='loader' />
+                        : <ProfileCard
+                            fixed={ isMobile }
+                            user={data[activeIndex]}
+                            actions
+                            onSwipeLeft={() => changeIndex(+1)}
+                            onSwipeRight={() => changeIndex(+1)}
+                        />
+                }
+                <div style={{ height: '2rem' }} />
+            </div>
+        </div>
+    )
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withRouter(Search))

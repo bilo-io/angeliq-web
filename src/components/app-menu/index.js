@@ -12,7 +12,7 @@ import {
     logOut
 } from 'data/redux/session/actions'
 
-import visionLogo from 'img/vision-logo-2-blue.png'
+import logo from 'img/angelic-pink.png'
 
 const supportedPlatforms = {
     blogger: {
@@ -160,52 +160,52 @@ export class AppMenu extends Component {
                     <FAIcon name='times' />
                 </div>
                 <div className='logo'>
-                    {/* <img src={ visionLogo } /> */}
+                    {/* <img src={ logo } /> */}
                 </div>
                 <div className='user'>
-                    <Avatar user={ user } hideUsername hideEmail/>
+                    {/* <Avatar user={ user } hideUsername hideEmail/> */}
                 </div>
             </div>
             {/* BODY */}
             <div className='content'>
                 <div className='flex-col'>
-                    <div className='title logo-font'>{ appName }</div>
-                    <div className='version'>{ appVersion }</div>
+                    {/* <div className='title logo-font'>{ appName }</div> */}
+                    <div><img src={ logo } style={{ width: '6rem', height: 'auto' }} /></div>
+                    <div style={{ fontFamily: '\'Dancing Script\', cursive', lineHeight: '3rem', fontSize: '1.6rem', color: '#FF4165', marginBottom: '1.5rem' }}>
+                            AngeliQ
+                    </div>
                 </div>
                 <div>
-                    <div className='link' onClick={ this.goTo('/')}>
-                        <FAIcon name='home' />&nbsp;&nbsp;
-                        Home
-                    </div>
-                    <div className='link' onClick={ this.goTo('/app/identity/profile')}>
+                    <div className='link' onClick={ this.goTo('/app/profile')}>
                         <FAIcon name='user' />&nbsp;&nbsp;
-                        Account
+                        Profile
                     </div>
+                    <div className='link' onClick={ this.goTo('/app/settings')}>
+                        <FAIcon name='cog' />&nbsp;&nbsp;
+                        Settings
+                    </div>
+
                     <div className='divider horizontal' style={ dividerStyle } />
-                        Apps
+
+                    <div className='link' onClick={ this.goTo('/app/about')}>
+                        About
+                    </div>
+
+                    <div className='link' onClick={ this.goTo('/app/terms')}>
+                        Terms of Use
+                    </div>
+
                     <div className='divider horizontal' style={ dividerStyle } />
-                    {
-                        [
-                            'slides',
-                            'schools',
-                            'stats',
-                            'stops',
-                            'crypton',
-                            'core'
-                        ].map((appName, i) => (
-                            <div
-                                key={ `${appName}${i}` }
-                                className='link'
-                                onClick={ this.goTo(`/app/${appName}`)}>
-                                { appName }
-                            </div>
-                        ))
-                    }
-                    <div className='divider horizontal' style={ dividerStyle } />
+
                     <div className='link' onClick={ this.logOut }>
                         <FAIcon name='door-open' />&nbsp;&nbsp;
                         Log Out
                     </div>
+
+                    <div className='divider horizontal' style={ dividerStyle } />
+
+                    <br />
+                    <div className='version'>version { appVersion }</div>
                 </div>
             </div>
             {/* FOOTER */}

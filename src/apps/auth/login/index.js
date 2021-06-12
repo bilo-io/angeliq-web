@@ -18,7 +18,7 @@ import {
 // #endregion
 
 // #region Assets & Data
-import visionLogo from 'img/vision-logo-2-blue.png'
+import visionLogo from 'img/angelic-pink.png'
 import { providerLogos } from './provider-logos'
 // #endregion
 const mapStateToProps = (state, ownProps) => {

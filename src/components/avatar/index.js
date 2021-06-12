@@ -12,10 +12,10 @@ export const Avatar = ({
     const ProfilePicture = <img
         no-referrer
         className='card-1'
-        // TODO: swap out hardcoded URL with: src={ user.photoURL }
-        src={ 'https://avatars0.githubusercontent.com/u/3089012?v=4' }
+        src={ user.image || user.photoURL || user.photoUrl || 'https://avatars0.githubusercontent.com/u/3089012?v=4' }
         style={{
-            width: '4em',
+            width: '4rem',
+            height: '4rem',
             borderRadius: '2em',
             marginRight: '1em',
             marginTop: '0.2em'
@@ -25,14 +25,17 @@ export const Avatar = ({
     return <div className='flex-row' style={ style }>
         { !imgRight && ProfilePicture }
         <div className='flex-col'>
-            { !hideUsername && <div style={{
+            <div style={{
                 fontSize: '1.1em',
                 fontWeight: 'bold',
                 marginTop: '0.5rem',
+                paddingTop: (hideEmail || hideUsername)
+                    ? '0rem'
+                    : '0rem',
                 marginBottom: '0.5rem'
             }}>
-                { user.displayName }
-            </div> }
+                { user.name || user.displayName }
+            </div>
             { !hideEmail && <div>{ user.email }</div> }
         </div>
         { imgRight && ProfilePicture }
@@ -51,8 +54,8 @@ Avatar.defaultProps = {
         email: 'unknown@email.address',
         displayName: 'Unknown User'
     },
-    hideUsername: true,
-    hideEmail: false
+    hideUsername: false,
+    hideEmail: true
 }
 
 export default Avatar

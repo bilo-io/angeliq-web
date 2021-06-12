@@ -1,0 +1,44 @@
+$dim-message-width: 40rem;
+
+.chat-thread {
+    @extend .auto-scroll-y;
+    @extend .no-scrollbar;
+    @extend .padded;
+
+    position: relative;
+    width: 100%;
+
+    &.user {
+        background-color: $col-active;
+        color: white;
+        // margin-left: calc(100vw - #{$dim-message-width})
+        align-self: right;
+    }
+
+    &.contact {
+        background-color: rgb(228, 227, 227);
+        color: $col-active;
+        align-self: left;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border-radius: 12px;
+      background-color: rgba($col-active, 0.3);
+      font-size: 14px;
+      width: fit-content;
+      max-width: 90%;
+      text-align: left;
+      border-bottom-left-radius: 0px;
+    }
+
+    .user-message {
+      @extend .message;
+      margin-left: auto;
+      background-color: darken($col-active, 2%);
+      color: white;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 12px;
+    }
+}
