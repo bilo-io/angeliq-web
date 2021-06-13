@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component {
     }
 
     captureScreen = () => {
-        const node = document.getElementById('vision-studio-app-root')
+        const node = document.getElementById('angeliq-app-root')
         console.log('exportTo.png', node)
 
         toPng(node)

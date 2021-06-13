@@ -70,7 +70,33 @@ export class Login extends Component {
             break
 
             // TODO: add auth cases for: email, facebook, github
+        case 'facebook':
+            provider = new firebase.auth.FacebookAuthProvider()
+            provider.addScope('user_birthday')
+            firebase
+                .auth()
+                .signInWithPopup(provider)
+                .then((result) => {
+                    console.log({
+                        token: result.token,
+                        user: result.user,
+                        result
+                    })
+                    // TODO: set user
+                    this.props.setUser({ ...result.user, token: result.token })
+                    // TODO: check url for redirect/hash
+                    this.props.history.push('/app/profile')
+                })
+                .catch((error) => {
+                    var errorCode = error.code
+                    var errorMessage = error.message
+                    var email = error.email
+                    var credential = error.credential
+                    console.log({ error })
+                })
+            // AUTH.languageCode = 'en'
 
+            break
         default:
             alert(`Auth Provider not configured: "${providerName}"`)
             break
