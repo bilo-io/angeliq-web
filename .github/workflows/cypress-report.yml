@@ -1,0 +1,15 @@
+- name: Prepare reports
+  if: always()
+  run: |
+    cd frontend
+    npm i -g mochawesome-merge
+    npm i -g mochawesome-report-generator
+    mochawesome-merge test/cypress/reports/mocha/*.json > ./test/cypress/reports/mocha/index.json
+    marge --charts=true --showPassed=false -o ./test/cypress/reports/mocha/ ./test/cypress/reports/mocha/index.json
+- name: Cypress report
+  uses: dmitry/cypress-report-action@v1
+  with:
+    # token: ${{ secrets.GITHUB_TOKEN }}
+    token: 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 # todo replace with environment variable
+    pathname: frontend/test/cypress/reports/mocha/index.json
+  if: always()

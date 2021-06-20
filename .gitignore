@@ -2,6 +2,7 @@
 doc/
 dist/
 dist-app/
+public/
 
 # Testing
 cypress/videos

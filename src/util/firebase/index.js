@@ -113,4 +113,4 @@ export default {
 }
 
 // create('my/test', {     hello: 'world' })
-createWithId('my/test', 'testing', { hello: 'world' })
+// createWithId('my/test', 'testing', { hello: 'world' })
