@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import { Accordion, Code, VideoApp } from 'components'
 import { PanelImage } from 'components/panel/image'
 import { PanelVideo } from 'components/panel/video'
@@ -17,7 +17,7 @@ import vidMatter2 from 'img/home/vision_matter_2.mp4'
 import vidIntegration from 'img/home/vision_integration.mp4'
 import vidSpacetime from 'img/home/vision_spacetime.mp4'
 import vidTube from 'img/home/vision_tube.mp4'
-const nodePackage = require('../../../../package.json')
+import nodePackage from '../../../../package.json'
 
 export class StudioHome extends Component {
     state = {

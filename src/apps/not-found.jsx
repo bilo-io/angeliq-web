@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 
 export const NotFound = (props) => {
     return <div className='page'>

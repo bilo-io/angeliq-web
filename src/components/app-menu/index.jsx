@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FAIcon from 'react-fontawesome'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // #endregion
@@ -110,7 +110,7 @@ export class AppMenu extends Component {
         this.adaptToPath()
     }
 
-    componentWillReceiveProps (nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
         this.adaptToPath()
     }
 

@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Route, Redirect } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 // #endregion
 
 // #region Pages
@@ -16,18 +16,15 @@ const Search = React.lazy(() => import(/* webpackChunkName: "search" */ './searc
 
 const scopeRoot = '/app'
 export const AppRouter = () => (
-    <>
-        <Route exact path={`${scopeRoot}`}
-            render={
-                () => <Redirect to={`${scopeRoot}/search`} />
-            }
-        />
-        <Route exact path={`${scopeRoot}/settings`} render={ () => <Settings /> } />
-        <Route exact path={`${scopeRoot}/likes`} render={ () => <Likes /> } />
-        <Route exact path={`${scopeRoot}/search`} render={ () => <Search /> } />
-        <Route exact path={`${scopeRoot}/chat`} render={ () => <Chats /> } />
-        <Route exact path={`${scopeRoot}/profile`} render={ () => <Profile /> } />
-    </>
+    <Routes>
+        <Route index element={ <Navigate to={`${scopeRoot}/search`} replace /> } />
+        <Route path='settings' element={ <Settings /> } />
+        <Route path='likes' element={ <Likes /> } />
+        <Route path='search' element={ <Search /> } />
+        <Route path='chat' element={ <Chats /> } />
+        <Route path='profile' element={ <Profile /> } />
+        <Route path='*' element={ null } />
+    </Routes>
 )
 
 export default AppRouter

@@ -1,7 +1,7 @@
 // #region Modules
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import FAIcon from 'react-fontawesome'

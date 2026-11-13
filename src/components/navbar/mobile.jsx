@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import FAIcon from 'react-fontawesome'
 import appLogo from 'img/angelic-white.png'
 

@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 import FAIcon from 'react-fontawesome'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import categories from './categories'

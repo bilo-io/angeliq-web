@@ -1,11 +1,11 @@
 // #region Modules
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
-import { withRouter } from 'react-router'
+import { withRouter } from 'util/with-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import FAIcon from 'react-fontawesome'
-import Slider, { Range } from 'rc-slider'
+import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 // #endregion Modules
 
@@ -75,7 +75,8 @@ export const Settings = ({ user, history }) => {
                 <div>Age range ({ageRange[0]} - {ageRange[1]})</div>
                 <br />
                 <br />
-                <Range
+                <Slider
+                    range
                     value={ageRange}
                     onChange={(value) => setAgeRange(value)}
                     settings={{

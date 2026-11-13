@@ -3,7 +3,7 @@ import React, {
     useEffect,
     useState
 } from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // #endregion
@@ -218,27 +218,24 @@ export const App = (props) => {
                                 isLoading={ isLoading.country }
                                 onMount={ fetchCountry }
                             > */}
-                            <Switch>
-                                <ErrorBoundary>
-                                    <React.Suspense fallback={<div className='page'>
-                                        <div className='loader' style={{ marginTop: 'calc(50vh - 2rem)' }} />
-                                    </div>
-                                    }>
-                                        <Route
-                                            exact
-                                            path={'/'}
-                                            render={ () => <Redirect to={'/app'} /> }
-                                        />
-
+                            <ErrorBoundary>
+                                <React.Suspense fallback={<div className='page'>
+                                    <div className='loader' style={{ marginTop: 'calc(50vh - 2rem)' }} />
+                                </div>
+                                }>
+                                    <Routes>
+                                        <Route path='/' element={ <Navigate to='/app' replace /> } />
                                         {/* Auth */}
-                                        <Route path={'/auth'} component={ IdentityRouter } />
+                                        <Route path='/auth/*' element={ <IdentityRouter /> } />
                                         {/* App */}
-                                        <Route path='/app' render={ () => <AppRouter /> } />
+                                        <Route path='/app/*' element={ <AppRouter /> } />
                                         {/* Websites */}
-                                        <Route path={'/web'} component={ WebRouter } />
-                                    </React.Suspense>
-                                </ErrorBoundary>
-                            </Switch>
+                                        <Route path='/web/*' element={ <WebRouter /> } />
+                                        {/* v5 rendered nothing here for other paths */}
+                                        <Route path='*' element={ null } />
+                                    </Routes>
+                                </React.Suspense>
+                            </ErrorBoundary>
                         </Async>
                         {/* </Async> */}
                         <ErrorBoundary>

@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Route, Redirect } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 // #endregion
 
 // #region Pages
@@ -12,15 +12,11 @@ const Login = React.lazy(() => import(/* webpackChunkName: "identity-login" */ '
 const scopeRoot = '/auth'
 
 export const IdentityRouter = () => (
-    <>
-        <Route exact
-            path={`${scopeRoot}`}
-            render={
-                () => <Redirect to={`${scopeRoot}/login`} />
-            }
-        />
-        <Route exact path={`${scopeRoot}/login`} render={ () => <Login /> } />>
-    </>
+    <Routes>
+        <Route index element={ <Navigate to={`${scopeRoot}/login`} replace /> } />
+        <Route path='login' element={ <Login /> } />
+        <Route path='*' element={ null } />
+    </Routes>
 )
 
 export const IdentityNavBar = [
