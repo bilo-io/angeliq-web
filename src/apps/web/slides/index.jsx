@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'util/with-router'
-import { Accordion, Code, VideoApp } from 'components'
+import { Accordion } from 'components'
 import { PanelImage } from './panel-image'
 import { PanelVideo } from './panel-video'
 import data from 'demo/mock-data/1d'
