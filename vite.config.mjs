@@ -12,13 +12,14 @@ export default defineConfig({
             { find: /^(apps|charts|components|data|demo|img|util|widgets)(\/.*)?$/, replacement: `${src}/$1$2` }
         ]
     },
+    css: {
+        // the styles predate Dart Sass 1.80; keep its deprecation notices out of every build
+        preprocessorOptions: { scss: { silenceDeprecations: ['import', 'global-builtin', 'color-functions'] } }
+    },
     server: { port: 8080 },
     build: {
         outDir: 'dist',
-        target: 'es2020',
-        // a few imports name exports that no longer exist (Button, Code, Select, ...);
-        // webpack let them through as undefined, so do the same
-        rollupOptions: { shimMissingExports: true }
+        target: 'es2020'
     },
     test: {
         environment: 'jsdom',
