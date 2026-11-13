@@ -19,7 +19,6 @@ import {
     setVideoModal
 } from 'data/redux/session/actions'
 import data from 'data/mock/search'
-import { AQPink } from 'util/colors'
 // #endregion
 
 const mapStateToProps = (state, ownProps) => {

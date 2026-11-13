@@ -11,7 +11,6 @@ import categories from './categories'
 import {
     Avatar,
     // Input,
-    Select,
     Tabs
 } from 'components'
 

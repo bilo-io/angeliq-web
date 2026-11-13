@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Modal } from 'components'
+import { Modal } from 'components'
 import { WidgetYoutube } from 'widgets'
 import config from './_config'
 

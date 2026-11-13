@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { AsyncLoader, Loader } from 'components'
+import { Loader } from 'components'
 
 export class Iframe extends Component {
     static propTypes = {

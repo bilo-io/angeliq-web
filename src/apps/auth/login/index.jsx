@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebase from 'firebase'
 import { AUTH } from 'util/firebase'
-import { AQPurple, AQPink } from 'util/colors'
 // #endregion Modules
 
 // #region Misc

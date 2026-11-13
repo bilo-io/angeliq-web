@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { MasterChart } from '..'
 import RGL, { WidthProvider } from 'react-grid-layout'
 const ReactGridLayout = WidthProvider(RGL)
 
