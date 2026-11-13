@@ -22,7 +22,7 @@
     },
     "mac": {
       "target": "dmg",
-      "icon": "dist/assets/images/favicon.ico"
+      "icon": "src/assets/favicon.ico"
     }
   },
   "scripts": {
