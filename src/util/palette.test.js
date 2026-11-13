@@ -2,7 +2,7 @@
 
 describe('Palette', () => {
     beforeEach(() => {
-        jest.spyOn(console, 'warn').mockImplementation(() => {})
+        vi.spyOn(console, 'warn').mockImplementation(() => {})
     })
     describe('should test util/palette', () => {
         test(`: ${undefined}`, () => {

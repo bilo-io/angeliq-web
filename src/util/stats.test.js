@@ -12,7 +12,7 @@ const data2D = [
 
 describe('input data in incorrect shape', () => {
     beforeEach(() => {
-        jest.spyOn(console, 'warn').mockImplementation(() => {})
+        vi.spyOn(console, 'warn').mockImplementation(() => {})
     })
     describe('type and null checks', () => {
         test(`stats with input: ${undefined}`, () => {
