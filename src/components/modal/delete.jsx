@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Modal } from '.'
 export class AddTileModal extends Component {
     static propTypes = {
-        submitText: PropTypes.string,
         isOpen: PropTypes.bool,
         title: PropTypes.string,
         type: PropTypes.oneOf([
@@ -16,15 +15,17 @@ export class AddTileModal extends Component {
         onCancel: PropTypes.func,
         onSubmit: PropTypes.func,
         cancelText: PropTypes.string,
-        submitText: PropTypes.string,
+        submitText: PropTypes.string
     }
+
     static defaultProps = {
         title: 'Confirmation',
         submitText: 'Ok',
         cancelText: 'Cancel',
-        onCancel: () => { console.log(`NOT_DEFINED:\n<AddResourceModal /> props.onCancel`)},
-        onSubmit: () => { console.log(`NOT_DEFINED:\n<AddResourceModal /> props.onSubmit`)}
+        onCancel: () => { console.log('NOT_DEFINED:\n<AddResourceModal /> props.onCancel') },
+        onSubmit: () => { console.log('NOT_DEFINED:\n<AddResourceModal /> props.onSubmit') }
     }
+
     render () {
         const {
             type,

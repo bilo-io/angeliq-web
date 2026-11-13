@@ -13,11 +13,12 @@ export class GridPagination extends Component {
             pages: [
                 ...this.state.pages,
                 {
-                    items: [ { x: 0, y: 0, w: 12, h:12 } ]
+                    items: [{ x: 0, y: 0, w: 12, h: 12 }]
                 }
             ]
         })
     }
+
     render () {
         const { data } = this.props
         const { pages } = this.state

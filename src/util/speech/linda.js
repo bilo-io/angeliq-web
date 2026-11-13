@@ -1,5 +1,6 @@
 export class Linda {
     constructor (lang, handler) {
+        // eslint-disable-next-line new-cap, no-undef
         this.recognition = new webkitSpeechRecognition()
         this.recognition.continuous = true
         this.recognition.interimResults = true

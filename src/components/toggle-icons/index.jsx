@@ -1,10 +1,11 @@
-import React, { Component }  from 'react'
+import React, { Component } from 'react'
 import FAIcon from 'react-fontawesome'
 
 export class ToggleIcons extends Component {
     static defaultProps ={
         isDefaultActive: true
     }
+
     UNSAFE_componentWillMount () {
         this.setState({
             items: this.props.items.map(item => ({
@@ -13,6 +14,7 @@ export class ToggleIcons extends Component {
             }))
         })
     }
+
     toggleItem = (index) => () => {
         const { items } = this.state
         this.setState({
@@ -20,16 +22,17 @@ export class ToggleIcons extends Component {
                 ...items.slice(0, index),
                 {
                     ...items[index],
-                    isActive: !items[index].isActive,
+                    isActive: !items[index].isActive
                 },
                 ...items.slice(index + 1)
             ]
         }, () => this.props.onChange(this.state.items))
     }
-    render() {
+
+    render () {
         const { items } = this.state
         return (
-            <div className={`flex-row`}>
+            <div className={'flex-row'}>
                 {
                     items.map(
                         (item, i) => <FAIcon

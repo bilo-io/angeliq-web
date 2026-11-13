@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
     MapContainer,
@@ -21,13 +21,13 @@ import markerIconShadow from 'leaflet/dist/images/marker-shadow.png'
 
 import geoPoint from './point'
 
-delete L.Icon.Default.prototype._getIconUrl;
+delete L.Icon.Default.prototype._getIconUrl
 
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: markerIcon2x,
     iconUrl: markerIcon,
     shadowUrl: markerIconShadow
-});
+})
 
 // react-leaflet 3+ takes map events from a hook instead of an onClick prop
 const ClickHandler = ({ onClick }) => {
@@ -37,10 +37,10 @@ const ClickHandler = ({ onClick }) => {
 
 const mapSrc = '../../img/map'
 const pinProps = {
-    shadowUrl: `../../img/map/map-pin-shadow.svg`,
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowUrl: '../../img/map/map-pin-shadow.svg',
+    iconSize: [38, 95], // size of the icon
+    shadowSize: [50, 64], // size of the shadow
+    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62], // the same for the shadow
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 }
@@ -58,16 +58,18 @@ const pinBlue = {
     ...pinProps
 }
 export class VisionMap extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.style = 'dark'
         this.token = import.meta.env.VITE_MAPBOX_TOKEN
     }
+
     static propTypes = {
         points: PropTypes.array,
         lines: PropTypes.array,
         pins: PropTypes.array
     }
+
     state = {
         lat: -33.9249,
         lng: 18.4241,
@@ -76,13 +78,16 @@ export class VisionMap extends Component {
         bounds: []
         // bounds: []
     }
+
     onClick = (e) => {
         this.props.onClick(e.latlng.slice().reverse)
     }
+
     componentDidMount () {
         console.log(this.props)
         this.showPoints(this.props.points)
     }
+
     showPoints = (points) => {
         const { lat, lng } = this.state
         const bounds = L.latLngBounds([
@@ -95,18 +100,19 @@ export class VisionMap extends Component {
             console.log('this.bounds', this.bounds)
         }, 100)
     }
-    render() {
+
+    render () {
         const { bounds, style, theme, children, lines, points, pins } = this.props
         const center = [this.state.lat, this.state.lng]
         const { pointRadius, zoom } = this.state
         this.theme = `https://api.tiles.mapbox.com/v4/mapbox.${(theme || this.style)}/{z}/{x}/{y}.png?access_token=${this.token}`
 
-        return  (
-            <div style={{position:'relative', height: '100%', width: '100%'}}>
+        return (
+            <div style={{ position: 'relative', height: '100%', width: '100%' }}>
                 <MapContainer
                     // animate={ true }
                     // bounds={ bounds }
-                    ref={ el => this.map = el}
+                    ref={ el => { this.map = el } }
                     className='map'
                     center={ center }
                     bounds={ this.bounds }
@@ -119,7 +125,7 @@ export class VisionMap extends Component {
                         url={ this.theme }
                     />
                     {
-                        (points || []).map( (point, i) => <CircleMarker
+                        (points || []).map((point, i) => <CircleMarker
                             radius={ pointRadius }
                             key={`circle-marker_${i}_${point.label}`}
                             pathOptions={{
@@ -133,7 +139,7 @@ export class VisionMap extends Component {
                         </CircleMarker>
                         )
                     }
-                                        {
+                    {
                         (lines || []).map((line, i) => <Polyline key={`polyline_${i}`} pathOptions={{ color: line.color }} positions={line.geometry.coordinates} />)
                     }
                     {

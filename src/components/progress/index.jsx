@@ -6,7 +6,7 @@ export const Progress = ({ ratio = 0, color = '#00adee', items, style = { width:
     const downloadRatio = items
         ? items.length === 0
             ? 0
-            : items.map(item => item.ratio).reduce((prev, curr) => curr += prev) / items.length
+            : items.map(item => item.ratio).reduce((prev, curr) => curr + prev) / items.length
         : ratio
 
     const backgroundBarStyle = {
@@ -25,7 +25,7 @@ export const Progress = ({ ratio = 0, color = '#00adee', items, style = { width:
         </div>
         <br />
         {/* //TODO This doesn't make fully sense */}
-        { items ?.length > 1 && (items || []).map((item, i) => <div key={ i } style={{ marginLeft: '10%', fontSize: '0.7rem', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '0.25rem' }}
+        { items?.length > 1 && (items || []).map((item, i) => <div key={ i } style={{ marginLeft: '10%', fontSize: '0.7rem', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '0.25rem' }}
             className={ 'flex-row' }
         >
             <Circular

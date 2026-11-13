@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Loader } from 'components'
 
@@ -10,15 +10,18 @@ export class Iframe extends Component {
         height: PropTypes.number,
         allowFullScreen: PropTypes.bool
     }
+
     static defaultProps = {
         allowFullScreen: true,
         width: 960,
         height: 800
     }
+
     state = {
         isLoading: true
     }
-    constructor(props) {
+
+    constructor (props) {
         super(props)
         this.ref = React.createRef()
     }
@@ -29,39 +32,41 @@ export class Iframe extends Component {
             isLoading: false
         }, () => this.props.onLoad())
     }
-    componentDidMount() {
+
+    componentDidMount () {
         this.ref.current.addEventListener('load', this.onLoad)
     }
-    componentWillUnmount() {
+
+    componentWillUnmount () {
         this.ref.current?.removeEventListener('load', this.onLoad)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
         const { src } = this.props
-        if(src !== nextProps.src) {
-            console.log('src updated:', {old: src, new: nextProps.src})
+        if (src !== nextProps.src) {
+            console.log('src updated:', { old: src, new: nextProps.src })
             this.setState({
                 isLoading: true
             })
         }
     }
 
-    render() {
+    render () {
         const { width, height, allowFullScreen } = this.props
         const { isLoading } = this.state
         return <div className='iframe-container'>
-                <iframe
-                    {...this.props}
-                    ref={this.ref}
-                    frameBorder='0'
-                    scrolling='no'
-                    width={width}
-                    height={height}
-                    allowFullScreen={ allowFullScreen }
-                    mozallowfullscreen={ allowFullScreen.toString() }
-                    webkitallowfullscreen={ allowFullScreen.toString() }
-                />
-            </div>
+            <iframe
+                {...this.props}
+                ref={this.ref}
+                frameBorder='0'
+                scrolling='no'
+                width={width}
+                height={height}
+                allowFullScreen={ allowFullScreen }
+                mozallowfullscreen={ allowFullScreen.toString() }
+                webkitallowfullscreen={ allowFullScreen.toString() }
+            />
+        </div>
     }
 }
 

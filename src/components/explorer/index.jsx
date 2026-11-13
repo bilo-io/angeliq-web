@@ -207,7 +207,7 @@ export class Explorer extends Component {
                         <div className='auto-scroll-y' style={{ ...paddedSlot, height: 'calc(100vh - 7rem)' }}>
                             {
                                 Object.keys(resourcesByCollection).map((collection, i) => {
-                                    const isCollectionEmpty = resourcesByCollection[collection].resources.length == 0
+                                    const isCollectionEmpty = resourcesByCollection[collection].resources.length === 0
                                     const showEmptyCollections = false
                                     return (showEmptyCollections || !isCollectionEmpty) && <div key={ i }>
                                         <div key={ i } className='sidebar-collection'onClick={ this.toggleCollection(collection) }>

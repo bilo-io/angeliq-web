@@ -25,9 +25,9 @@ const crypton = (state = initialState, {
         return {
             ...state,
             coins: {
-                data: payload.data.sort((a, b) => a?.['market_data']?.['current_price']?.[state.currency] > b?.['market_data']?.['current_price']?.[state.currency]
+                data: payload.data.sort((a, b) => a?.market_data?.current_price?.[state.currency] > b?.market_data?.current_price?.[state.currency]
                     ? -1
-                    : a?.['market_data']?.['current_price']?.[state.currency] < b?.['market_data']?.['current_price']?.[state.currency]
+                    : a?.market_data?.current_price?.[state.currency] < b?.market_data?.current_price?.[state.currency]
                         ? 1
                         : 0)
             }

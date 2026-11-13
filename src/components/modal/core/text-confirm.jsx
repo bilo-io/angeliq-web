@@ -7,13 +7,16 @@ export class TextConfirmModal extends Component {
         submitText: PropTypes.string,
         secondaryText: PropTypes.string
     }
+
     static defaultProps = {
         submitText: 'Ok',
         secondaryText: 'Cancel'
     }
+
     state = {
         userinput: ''
     }
+
     submit = (userinput) => () => {
         const { resourceName } = this.props
         this.props.onSubmit(userinput)
@@ -58,7 +61,7 @@ export class TextConfirmModal extends Component {
                 <button
                     className={color || 'primary'}
                     onClick={this.submit(userinput)}
-                    style={{minWidth: '6em'}}>{submitText}
+                    style={{ minWidth: '6em' }}>{submitText}
                 </button>
             </div>}
         />

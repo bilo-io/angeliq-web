@@ -23,7 +23,7 @@ marked.setOptions({
     highlight: (code) => {
         return highlight
             .highlightAuto(code)
-            .value;
+            .value
     }
 })
 
@@ -36,27 +36,27 @@ export class Markdown extends Component {
     static propTypes = {
         ...propTypesMDReader
     }
-    constructor(props) {
-        super(props);
+
+    componentDidMount () {
+        this.checkProps(this.props)
     }
-    componentDidMount() {
-        this.checkProps(this.props);
+
+    UNSAFE_componentWillReceiveProps (nextProps) {
+        this.checkProps(nextProps)
     }
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        this.checkProps(nextProps);
-    }
-    checkProps(props) {
-        const { markdown, url } = props;
+
+    checkProps (props) {
+        const { markdown, url } = props
         // console.log('receiving props', props, this.props)
         // , () => {
-            // props.url !== this.props.url
-            //     ? this.fetchMD(props.url)
-            //     : null;
-            // props.markdown !== this.props.markdown
-            //     ? this.processMD(props.markdown)
-            //     : null;
-                this.fetchMD(props.url)
-                this.processMD(props.markdown)
+        // props.url !== this.props.url
+        //     ? this.fetchMD(props.url)
+        //     : null;
+        // props.markdown !== this.props.markdown
+        //     ? this.processMD(props.markdown)
+        //     : null;
+        this.fetchMD(props.url)
+        this.processMD(props.markdown)
         // });
         this.setState({
             ...this.state,
@@ -64,15 +64,16 @@ export class Markdown extends Component {
             url
         })
     }
-    fetchMD(url) {
+
+    fetchMD (url) {
         console.log('fetching markdown: ', url)
-        if(!url || url.length === 0) return
-        this.loading = true;
+        if (!url || url.length === 0) return
+        this.loading = true
         if (!url) {
             console.warn('no url specified!: ', url)
-            return;
+            return
         }
-        console.log('fetching Markdown: ', this.props.url);
+        console.log('fetching Markdown: ', this.props.url)
         // axios
         //     .get(url)
         //     .then((response) => {
@@ -83,13 +84,14 @@ export class Markdown extends Component {
         //         console.log(this.state)
         //     });
     }
-    processMD(markdown) {
+
+    processMD (markdown) {
         // get headings:
         console.log('processing markdown', markdown)
-        if(!markdown || markdown.length === 0) return
-        let lines = markdown
+        if (!markdown || markdown.length === 0) return
+        const lines = markdown
             .split('\n')
-            .filter(line => line.substr(0, 1) === '#');
+            .filter(line => line.substr(0, 1) === '#')
         this.setState({
             ...this.state,
             loading: false,
@@ -100,16 +102,18 @@ export class Markdown extends Component {
         )
         // convert & highlight
     }
-    convertMDtoHTML(markdown) {
+
+    convertMDtoHTML (markdown) {
         this.setState({
             ...this.state,
             html: marked(markdown)
         }, () => {
-            this.loading = false;
+            this.loading = false
             console.log('markdown HTML: ', this.state.html)
-        });
+        })
     }
-    render() {
+
+    render () {
         return this.state
             ? (this.loading
                 // ? <Loader type={LoaderType.RAINBOW}/>
@@ -135,7 +139,7 @@ export class Markdown extends Component {
                         </div>
                     </div>
                 ))
-            : null;
+            : null
     }
 }
 

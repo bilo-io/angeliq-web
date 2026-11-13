@@ -173,15 +173,19 @@ export class BarChart extends Component {
                             })
                             .attr('width', x.range())
                             .on('mouseover', function () {
+                                // eslint-disable-next-line no-undef -- tooltip is never created; predates this change
                                 tooltip.style('display', null)
                             })
                             .on('mouseout', function () {
+                                // eslint-disable-next-line no-undef -- tooltip is never created; predates this change
                                 tooltip.style('display', 'none')
                             })
                             .on('mousemove', function (d) {
                                 var xPosition = d3.mouse(this)[0] - 15
                                 var yPosition = d3.mouse(this)[1] - 25
+                                // eslint-disable-next-line no-undef -- tooltip is never created; predates this change
                                 tooltip.attr('transform', 'translate(' + xPosition + ',' + yPosition + ')')
+                                // eslint-disable-next-line no-undef -- tooltip is never created; predates this change
                                 tooltip
                                     .select('text')
                                     .text(d.y)
@@ -231,6 +235,7 @@ export class BarChart extends Component {
                             .scaleLinear()
                             .range([0, 100])
                     }
+                    // eslint-disable-next-line no-constant-condition
                     if (hasXAxis && false) {
                         const xAxis = svg
                             .append('g')
@@ -240,6 +245,7 @@ export class BarChart extends Component {
                         // svg.append('g')     .attr('transform', 'translate(' + margin + ',' +
                         // (height+margin) + ')')     .attr('class','axis')     .call(xAxis)
                     }
+                    // eslint-disable-next-line no-constant-condition
                     if (hasYAxis && false) {
                         const yAxis = svg
                             .append('g')

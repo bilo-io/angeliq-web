@@ -5,7 +5,7 @@ export const Empty = ({ onClick, style, icon }) => {
     return <div style={{
         position: 'relative',
         width: 'calc(100% - 2px)',
-        height: style ?.height || 'calc(100% - 2px)',
+        height: style?.height || 'calc(100% - 2px)',
         cursor: 'grab',
         backgroundColor: style !== undefined
             ? (style.background || style.backgroundColor)

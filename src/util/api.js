@@ -38,7 +38,7 @@ const CrudAction = async (method, url, data) => {
             data
         })
     } catch (error) {
-        console.warn(`ERROR: ${err}`)
+        console.warn(`ERROR: ${error}`)
     }
 }
 

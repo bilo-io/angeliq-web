@@ -41,14 +41,14 @@ export class ChartWrapper extends Component {
         },
         callbacks: {
             updateState: console.log
-        },
+        }
     }
 
     state = {
         error: null
     }
 
-    containerId = 'chart_id_' + Math.random().toString().split('.')[1] //uniqueId('chart_')
+    containerId = 'chart_id_' + Math.random().toString().split('.')[1] // uniqueId('chart_')
 
     componentDidMount () {
         const result = this.renderChart()
@@ -83,7 +83,7 @@ export class ChartWrapper extends Component {
         const {
             data,
             options,
-            children,
+            children
         } = this.props
 
         const container = document.querySelector(`#${this.containerId}`)
@@ -92,7 +92,7 @@ export class ChartWrapper extends Component {
             this.chart.updateCallback(data, options)
         } else if (this.props.children) {
             container.innerHTML = ''
-            if(children) {
+            if (children) {
                 children({
                     data,
                     containerId: this.containerId,

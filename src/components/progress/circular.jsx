@@ -13,7 +13,7 @@ export const Circular = ({
         ...style,
         position: 'relative',
         width: diameter + 'px',
-        height: diameter + 'px',
+        height: diameter + 'px'
     }}>
         <svg width={'100%'} height={ '100%' }>
             <circle
@@ -22,7 +22,7 @@ export const Circular = ({
                 r='42%'
                 fill='transparent'
                 strokeWidth={ strokeWidth || 3 }
-                stroke={ `#ffffff`}
+                stroke={ '#ffffff'}
             />
             <circle
                 cx='50%'

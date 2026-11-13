@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Modal } from '.'
 export class AddModal extends Component {
     static propTypes = {
-        submitText: PropTypes.string,
         isOpen: PropTypes.bool,
         title: PropTypes.string,
         type: PropTypes.oneOf([
