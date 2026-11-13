@@ -2,7 +2,7 @@
 
 describe('URL State', () => {
     beforeEach(() => {
-        jest.spyOn(console, 'warn').mockImplementation(() => {})
+        vi.spyOn(console, 'warn').mockImplementation(() => {})
     })
     describe('hello world', () => {
         test(`: ${undefined}`, () => {
