@@ -135,8 +135,6 @@
       font-weight: bold;
     }
     .rbc-toolbar button {
-      @extend .button, .primary;
-      @extend .button, .hollow;
 
       color: #373a3c;
       display: inline-block;
