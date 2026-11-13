@@ -5,6 +5,10 @@ import LineChart from '../line'
 import PieChart from '../pie'
 import TableChart from '../table'
 import exportTo from 'util/export-to'
+import * as barConfig from '../bar/config'
+import * as lineConfig from '../line/config'
+import * as pieConfig from '../pie/config'
+import * as tableConfig from '../table/config'
 
 const allFormats = [
     'pdf',
@@ -146,10 +150,10 @@ MasterChart.types = [
 ]
 
 MasterChart.options = [
-    require('../bar/config'),
-    require('../line/config'),
-    require('../pie/config'),
-    require('../table/config')
+    barConfig,
+    lineConfig,
+    pieConfig,
+    tableConfig
 ]
 
 export default MasterChart

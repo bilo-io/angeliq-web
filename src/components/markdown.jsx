@@ -8,8 +8,8 @@ import PropTypes from 'prop-types'
 // import 'highlight.js/styles/vs.css'
 // import Loader, {LoaderType} from 'components/loader'
 // var axios = require('axios')
-const marked = require('marked')
-const highlight = require('highlight.js')
+import marked from 'marked'
+import highlight from 'highlight.js'
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -42,7 +42,7 @@ export class Markdown extends Component {
     componentDidMount() {
         this.checkProps(this.props);
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.checkProps(nextProps);
     }
     checkProps(props) {

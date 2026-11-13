@@ -1,6 +1,5 @@
 // http://api.weatherunlocked.com/api/current/51.50,-0.12?app_id={APP_ID}&app_key={APP_KEY}
 import axios from 'axios'
-import { utc } from 'moment'
 
 const appId = '21372c95'
 const appKey = '1a8c67d2650891c5cb6b6efbf3519a83'

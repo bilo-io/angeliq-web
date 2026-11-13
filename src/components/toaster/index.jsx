@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FAIcon from 'react-fontawesome'
-import { transformFromAstSync } from '@babel/core'
 import { getStatusIcon } from 'util/statusIcon'
 
 export class Toaster extends Component {
@@ -35,7 +34,7 @@ export class Toaster extends Component {
         })
     }
 
-    componentWillReceiveProps (nextProps, nextState) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextState) {
         if (nextProps.toast !== this.props.toast) {
             const { toast, minDisplayDuration } = nextProps
             const toastId = `toast_${Math.random().toString().split('.')[1]}`

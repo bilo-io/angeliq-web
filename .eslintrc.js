@@ -23,12 +23,22 @@ module.exports = {
     ignorePatterns: [],
     rules: {
         indent: ['error', 4],
-        'no-unused-vars': 0
+        'no-unused-vars': 0,
+        camelcase: ['error', { properties: 'never', allow: ['^UNSAFE_'] }]
     },
+    overrides: [
+        {
+            files: ['**/*.test.js', '**/*.test.jsx'],
+            env: { jest: true },
+            globals: { vi: 'readonly' }
+        }
+    ],
     settings: {
+        'import/extensions': ['.js', '.jsx'],
+        'import/resolver': { node: { extensions: ['.js', '.jsx'] } },
         react: {
             pragma: 'React',
-            version: '16.12.1'
+            version: 'detect'
         }
     }
 }
