@@ -62,7 +62,6 @@ export class PieChart extends Component {
                 options={ options }
             >
                 {function ({ container, containerId }) {
-                    console.log({ innerRadius, outerRadius })
                     const {
                         width,
                         height,
