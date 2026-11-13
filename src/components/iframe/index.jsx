@@ -33,14 +33,6 @@ export class Iframe extends Component {
         }, () => this.props.onLoad())
     }
 
-    componentDidMount () {
-        this.ref.current.addEventListener('load', this.onLoad)
-    }
-
-    componentWillUnmount () {
-        this.ref.current?.removeEventListener('load', this.onLoad)
-    }
-
     UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
         const { src } = this.props
         if (src !== nextProps.src) {
