@@ -66,7 +66,7 @@ export const Settings = ({ user, history }) => {
                                 key: 'all'
                             }
                         ].map((option) => (
-                            <option value={option.key}>{option.label}</option>
+                            <option key={option.key} value={option.key}>{option.label}</option>
                         ))
                     }
                 </select>

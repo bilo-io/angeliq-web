@@ -77,13 +77,13 @@ export const ProfileCard = ({
             </div>
             <div>
                 {
-                    user.images.slice(1).map((image, index) => <>
+                    user.images.slice(1).map((image, index) => <React.Fragment key={ index }>
                         <div className="relative" style={getImageStyle(image)}>
                         </div>
                         <div className="">
                             { getData(index, user) }
                         </div>
-                    </>)
+                    </React.Fragment>)
                 }
             </div>
             {

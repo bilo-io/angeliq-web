@@ -13,7 +13,7 @@ export const Avatar = ({
     imgRight
 }) => {
     const ProfilePicture = <img
-        no-referrer
+        referrerPolicy='no-referrer'
         className='card-1'
         src={ user.image || user.photoURL || user.photoUrl || 'https://avatars0.githubusercontent.com/u/3089012?v=4' }
         style={{

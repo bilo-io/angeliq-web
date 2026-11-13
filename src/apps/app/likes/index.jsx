@@ -46,8 +46,9 @@ export const Matches = () => {
                     <div className='padded'>
                         <div className="flex-row flex-wrap place-center">
                             {
-                                data.map((user) => (
+                                data.map((user, i) => (
                                     <div
+                                        key={ i }
                                         onClick={() => setProfile(user)}
                                         className='card'
                                         style={{

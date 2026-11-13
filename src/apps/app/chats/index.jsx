@@ -44,8 +44,8 @@ export const Chat = () => {
                 chats={
                     <div className='padded'>
                         {
-                            data.slice(0, 2).map((profile) => (
-                                <div onClick={() => setChatProfile(profile) }>
+                            data.slice(0, 2).map((profile, i) => (
+                                <div key={ i } onClick={() => setChatProfile(profile) }>
                                     <Avatar user={{ email: profile.name, name: profile.name, image: profile.images[0] }} />
                                 </div>
                             ))
@@ -56,8 +56,8 @@ export const Chat = () => {
                     <div>
                         <div className='padded'>
                             {
-                                data.slice(2).map((profile) => (
-                                    <div onClick={() => setChatProfile(profile) }>
+                                data.slice(2).map((profile, i) => (
+                                    <div key={ i } onClick={() => setChatProfile(profile) }>
                                         <Avatar user={{ email: profile.name, name: profile.name, image: profile.images[0] }} />
                                     </div>
                                 ))

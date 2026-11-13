@@ -87,13 +87,13 @@ export class Profile extends Component {
                                     categories
                                         .filter(x => x.key !== 'height')
                                         .map((category, i) => (
-                                            <div>
+                                            <div key={ category.key }>
                                                 <div>{ category.name }</div>
                                                 <div>
                                                     { category.options && <select>
                                                         {
                                                             category.options.map((option) => (
-                                                                <option value={ option.key }>{option.name}</option>
+                                                                <option key={ option.key } value={ option.key }>{option.name}</option>
                                                             ))
                                                         }
                                                     </select>}
@@ -133,7 +133,7 @@ export class Profile extends Component {
                                 <div>
                                     {
                                         categories.map((category) => (
-                                            <div className="flex-row">
+                                            <div key={ category.key } className="flex-row">
                                                 <FAIcon name={category.icon} />
                                                 <div>{category.options?.[0]?.name}</div>
                                             </div>

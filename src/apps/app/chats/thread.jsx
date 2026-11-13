@@ -49,7 +49,7 @@ export const ChatThread = ({ user, otherUser, goBack, goOnDate }) => {
                             'I say this app still has quite a lot of work left, before it can even be tested in a closed group.',
                             'Wise words ... I agree ... but it is off to a good start at least.'
                         ].map((message, i) => (
-                            <div className={`${i % 2 !== 0 ? 'user-message' : 'message'}`}
+                            <div key={ i } className={`${i % 2 !== 0 ? 'user-message' : 'message'}`}
                                 style={{ width: 'fit-content', height: 'auto' }}>
                                 {message}
                             </div>

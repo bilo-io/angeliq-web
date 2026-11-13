@@ -70,7 +70,7 @@ export default class Portfolio extends Component {
                     </div>
                     {
                         experiences.map((experience, i) => (
-                            <div className='experience'>
+                            <div key={ i } className='experience'>
                                 <div className='flex-row'>
                                     <div className='dates'>
                                         { experience.startDate.getFullYear().toString() } - { experience.endDate.getFullYear().toString() }
@@ -92,7 +92,7 @@ export default class Portfolio extends Component {
                                                 <div className='roles'>
                                                     {
                                                         experience.roles.map((role, i) => (
-                                                            <div className='role'>
+                                                            <div key={ i } className='role'>
                                                                 { role.name }
                                                             </div>
                                                         ))

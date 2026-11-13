@@ -16,6 +16,7 @@ export const Navbar = ({
                     const isActive = window.location.pathname.includes(item.path)
                     return (
                         <div
+                            key={ item.path }
                             onClick={() => goTo(item.path)}
                             className={ item.main ? 'main-tab' : 'normal-tab'}
                         >
