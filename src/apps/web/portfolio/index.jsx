@@ -12,7 +12,7 @@ import PanelVideo from 'components/panel/video'
 // #region Assets & Data
 import vidMatter from 'img/home/vision_matter.mp4'
 import vidMatter2 from 'img/home/vision_matter_2.mp4'
-import * as experiences from './experience'
+import experiences from './experience'
 const profilePic = 'https://media-exp1.licdn.com/dms/image/C4E03AQEgRh1THSiRKw/profile-displayphoto-shrink_400_400/0?e=1601510400&v=beta&t=1lILU5SWKpRYtjnhui9WSyt8PnPqnRkxfdQNo8V8qA0'
 // #endregion
 
