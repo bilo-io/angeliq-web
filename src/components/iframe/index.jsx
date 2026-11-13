@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { AsyncLoader, Loader } from 'components'
 
@@ -31,15 +30,13 @@ export class Iframe extends Component {
         }, () => this.props.onLoad())
     }
     componentDidMount() {
-        let iframe = ReactDOM.findDOMNode(this.ref.current)
-        iframe.addEventListener('load', this.onLoad)
+        this.ref.current.addEventListener('load', this.onLoad)
     }
-    componentDidMount() {
-        let iframe = ReactDOM.findDOMNode(this.ref.current)
-        iframe.removeEventListener('load', this.onLoad)
+    componentWillUnmount() {
+        this.ref.current?.removeEventListener('load', this.onLoad)
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         const { src } = this.props
         if(src !== nextProps.src) {
             console.log('src updated:', {old: src, new: nextProps.src})

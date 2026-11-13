@@ -27,7 +27,7 @@ export class VideoModal extends Component {
         url: 'https://www.youtube.com/watch?v=lCGlIjLT8OQ'
     }
 
-    componentWillReceiveProps (nextProps, nextState) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextState) {
         this.detectVideo()
     }
 

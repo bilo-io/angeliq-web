@@ -26,7 +26,7 @@ export class Explorer extends Component {
         resourcesByCollection: []
     }
 
-    componentWillReceiveProps (nextProps, nextState) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextState) {
         this.setResourcesByCollection(nextProps.resources)
     }
 

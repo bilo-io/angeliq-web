@@ -9,15 +9,18 @@ import PropTypes from 'prop-types'
 
 export const CardStack = ({
     children,
-    items,
-    renderItem,
+    items = [],
+    renderItem = (item, i) => <div>{JSON.stringify(item)}</div>,
     width,
     height,
     margin,
-    stackHeight,
+    stackHeight = '0.3rem',
     isAsync,
     isSeparate,
-    duration
+    duration = {
+        open: '1s',
+        close: '.3s'
+    }
 }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setLoading] = useState(false)
@@ -124,13 +127,4 @@ CardStack.propTypes = {
     })
 }
 
-CardStack.defaultProps = {
-    items: [],
-    stackHeight: '0.3rem',
-    duration: {
-        open: '1s',
-        close: '.3s'
-    },
-    renderItem: (item, i) => <div>{JSON.stringify(item)}</div>
-}
 export default CardStack

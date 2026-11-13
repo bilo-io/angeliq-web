@@ -1,7 +1,7 @@
 import React from 'react'
 import Circular from './circular'
 
-export const Progress = ({ ratio, color, items, ...rest }) => {
+export const Progress = ({ ratio = 0, color = '#00adee', items, style = { width: '100%' } }) => {
     // debugger
     const downloadRatio = items
         ? items.length === 0
@@ -19,7 +19,7 @@ export const Progress = ({ ratio, color, items, ...rest }) => {
         overflow: 'hidden'
     }
 
-    return <div style={{ ...rest.style }}>
+    return <div style={{ ...style }}>
         <div style={ backgroundBarStyle }>
             <div style={{ width: downloadRatio * 100 + '%', height: '100%', borderRadius: '0.25rem', backgroundColor: color }} />
         </div>
@@ -41,12 +41,4 @@ export const Progress = ({ ratio, color, items, ...rest }) => {
             </div> */}
         </div>)}
     </div>
-}
-
-Progress.defaultProps = {
-    color: '#00adee',
-    ratio: 0,
-    style: {
-        width: '100%'
-    }
 }

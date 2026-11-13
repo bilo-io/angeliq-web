@@ -27,7 +27,7 @@ export class LineChart extends Component {
         }
     }
 
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
         this.setState({
             options: {
                 ...nextProps.options

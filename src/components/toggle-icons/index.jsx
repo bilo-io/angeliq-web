@@ -5,7 +5,7 @@ export class ToggleIcons extends Component {
     static defaultProps ={
         isDefaultActive: true
     }
-    componentWillMount () {
+    UNSAFE_componentWillMount () {
         this.setState({
             items: this.props.items.map(item => ({
                 ...item,

@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {
-    Map,
+    MapContainer,
     TileLayer,
     Marker,
     CircleMarker,
     Polyline,
-    Popup
+    Popup,
+    useMapEvents
 } from 'react-leaflet'
 // import 'leaflet/dist/leaflet.css'
 import markerBlack from '../../img/map/map-pin-black.svg'
@@ -14,16 +15,25 @@ import markerBlue from '../../img/map/map-pin-blue.svg'
 import markerShadow from '../../img/map/map-pin-shadow.svg'
 import markerWhite from '../../img/map/map-pin-white-blue.svg'
 import L from 'leaflet'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerIconShadow from 'leaflet/dist/images/marker-shadow.png'
 
 import geoPoint from './point'
 
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+    iconRetinaUrl: markerIcon2x,
+    iconUrl: markerIcon,
+    shadowUrl: markerIconShadow
 });
+
+// react-leaflet 3+ takes map events from a hook instead of an onClick prop
+const ClickHandler = ({ onClick }) => {
+    useMapEvents({ click: onClick })
+    return null
+}
 
 const mapSrc = '../../img/map'
 const pinProps = {
@@ -93,7 +103,7 @@ export class VisionMap extends Component {
 
         return  (
             <div style={{position:'relative', height: '100%', width: '100%'}}>
-                <Map
+                <MapContainer
                     // animate={ true }
                     // bounds={ bounds }
                     ref={ el => this.map = el}
@@ -102,8 +112,8 @@ export class VisionMap extends Component {
                     bounds={ this.bounds }
                     zoom={ zoom }
                     zoomControl={ false }
-                    onClick={this.onClick}
                     style={ style }>
+                    <ClickHandler onClick={ this.onClick } />
                     <TileLayer
                         attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                         url={ this.theme }
@@ -112,8 +122,10 @@ export class VisionMap extends Component {
                         (points || []).map( (point, i) => <CircleMarker
                             radius={ pointRadius }
                             key={`circle-marker_${i}_${point.label}`}
-                            color={point.color || '#00adee'}
-                            fillColor={point.color || '#00adee'}
+                            pathOptions={{
+                                color: point.color || '#00adee',
+                                fillColor: point.color || '#00adee'
+                            }}
                             center={point.geometry.coordinates.slice().reverse()}>
                             <Popup>
                                 <span>{ point.address || point.name || point.label }</span>
@@ -122,7 +134,7 @@ export class VisionMap extends Component {
                         )
                     }
                                         {
-                        (lines || []).map((line, i) => <Polyline key={`polyline_${i}`} color={line.color} positions={line.geometry.coordinates} />)
+                        (lines || []).map((line, i) => <Polyline key={`polyline_${i}`} pathOptions={{ color: line.color }} positions={line.geometry.coordinates} />)
                     }
                     {
                         (pins || []).map((point, i) => <Marker
@@ -135,7 +147,7 @@ export class VisionMap extends Component {
                         )
                     }
                     { children }
-                </Map>
+                </MapContainer>
             </div>
         )
     }

@@ -39,7 +39,7 @@ export class WidgetSoundcloud extends Component {
         this.getTrackId(data.url)
     }
 
-    componentWillReceiveProps (nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
         this.getTrackId(nextProps.url)
     }
 

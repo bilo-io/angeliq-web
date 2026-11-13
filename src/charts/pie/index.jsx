@@ -43,7 +43,7 @@ export class PieChart extends Component {
         }
     }
 
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
         this.setState({
             options: {
                 ...nextProps.options

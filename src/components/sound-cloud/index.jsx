@@ -14,7 +14,7 @@ export class SoundCloud extends Component {
 
     hideLoader = () => this.setState({ isLoading: false })
 
-    componentWillReceiveProps = (nextProps, nextState) => {
+    UNSAFE_componentWillReceiveProps = (nextProps, nextState) => {
         console.log(nextProps)
         if (nextProps.url !== this.props.url) {
             // this.processUrl(nextProps.url)

@@ -10,7 +10,7 @@ export class JsonInput extends Component {
         error: false
     }
 
-    componentWillReceiveProps = (nextProps) => {
+    UNSAFE_componentWillReceiveProps = (nextProps) => {
         this.setState({
             value: nextProps.value,
             error: false

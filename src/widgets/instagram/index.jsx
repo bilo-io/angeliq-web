@@ -51,7 +51,7 @@ export class WidgetInstagram extends Component {
         clearInterval(this.loopInterval)
     }
 
-    componentWillReceiveProps (nextProps, nextState) {
+    UNSAFE_componentWillReceiveProps (nextProps, nextState) {
         const { data } = this.props
         const { hashtag, handle } = data
         if (hashtag !== nextProps.data.hashtag || hashtag !== nextProps.data.hashtag) {

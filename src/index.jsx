@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 
 import 'regenerator-runtime'
@@ -13,9 +13,8 @@ import store from './store'
 
 console.log(`${pkg.name}: v${pkg.version}`)
 
-ReactDOM.render(
+createRoot(document.getElementById('angelic-app-root')).render(
     <Provider store={store}>
         <App />
-    </Provider>,
-    document.getElementById('angelic-app-root')
+    </Provider>
 )

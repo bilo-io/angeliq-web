@@ -3,10 +3,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export const Avatar = ({
-    user,
+    user = {
+        email: 'unknown@email.address',
+        displayName: 'Unknown User'
+    },
     style,
-    hideUsername,
-    hideEmail,
+    hideUsername = false,
+    hideEmail = true,
     imgRight
 }) => {
     const ProfilePicture = <img
@@ -47,15 +50,6 @@ Avatar.propTypes = {
     style: PropTypes.object,
     hideUsername: PropTypes.bool,
     hideEmail: PropTypes.bool
-}
-
-Avatar.defaultProps = {
-    user: {
-        email: 'unknown@email.address',
-        displayName: 'Unknown User'
-    },
-    hideUsername: false,
-    hideEmail: true
 }
 
 export default Avatar
