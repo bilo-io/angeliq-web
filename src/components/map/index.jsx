@@ -51,7 +51,7 @@ export class VisionMap extends Component {
     constructor(props) {
         super(props)
         this.style = 'dark'
-        this.token = 'pk.eyJ1IjoiYmlsb2x3YWJvbmEiLCJhIjoiY2lmcDVpOW90MDFncnRlbHgwZXN1bDVsciJ9.iIMCbu4WnvsBgsGsChtY2Q'
+        this.token = import.meta.env.VITE_MAPBOX_TOKEN
     }
     static propTypes = {
         points: PropTypes.array,
