@@ -7,9 +7,12 @@ const src = fileURLToPath(new URL('./src', import.meta.url))
 export default defineConfig({
     plugins: [react()],
     resolve: {
-        // webpack resolved bare imports from src (e.g. 'components', 'util/apis/ip')
+        // webpack resolved bare imports from src (e.g. 'components', 'util/apis/ip').
+        // Only paths into these folders, and the three barrels imported bare, so npm
+        // packages such as 'util' still resolve to node_modules.
         alias: [
-            { find: /^(apps|charts|components|data|demo|img|util|widgets)(\/.*)?$/, replacement: `${src}/$1$2` }
+            { find: /^(apps|charts|components|data|demo|img|util|widgets)\//, replacement: `${src}/$1/` },
+            { find: /^(charts|components|widgets)$/, replacement: `${src}/$1` }
         ]
     },
     css: {
