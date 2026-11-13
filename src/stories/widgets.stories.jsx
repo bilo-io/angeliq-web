@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import {
     StoryWrapper
 } from './wrapper'
@@ -25,107 +24,111 @@ import {
     WidgetNews
 } from '../widgets'
 
+export default { title: 'Widgets' }
+
 const galleryLink = 'https://github.com/d3/d3/wiki/Gallery'
 
 // #region MEDIA
 
-storiesOf('Widgets | Media / Image', module)
-    .add('Default', () =>
+export const Image = {
+    name: 'Media / Image',
+    render: () =>
         <WidgetMediaImage
             isEditable={ true }
         />
-    )
+}
 
-storiesOf('Widgets | Media / Text', module)
-    .add('Default', () => (
+export const Text = {
+    name: 'Media / Text',
+    render: () => (
         <StoryWrapper>
             <WidgetMediaText
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Media / Audio', module)
-    .add('Default', () => (
+export const Audio = {
+    name: 'Media / Audio',
+    render: () => (
         <StoryWrapper>
             <WidgetMediaAudio
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Media / Video', module)
-    .add('Default', () => (
+export const Video = {
+    name: 'Media / Video',
+    render: () => (
         <StoryWrapper>
             <WidgetMediaVideo
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-// #endregion
-
-// #region SOCIAL
-
-storiesOf('Widgets | Social Media / Instagram', module)
-    .add('Default', () => (
+export const Instagram = {
+    name: 'Social Media / Instagram',
+    render: () => (
         <StoryWrapper>
             <WidgetInstagram
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Social Media / Soundcloud', module)
-    .add('Default', () => (
+export const Soundcloud = {
+    name: 'Social Media / Soundcloud',
+    render: () => (
         <StoryWrapper>
             <WidgetSoundcloud
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Social Media / Youtube', module)
-    .add('Default', () => (
+export const Youtube = {
+    name: 'Social Media / Youtube',
+    render: () => (
         <StoryWrapper className='flex-column'>
             <div><WidgetYoutube
                 isEditable={ true }
             /></div>
         </StoryWrapper>
-    ))
-    .add('Default', () => (
-        <StoryWrapper className='flex-column'>
-            <div><WidgetYoutube
-                isEditable={ true }
-            /></div>
-        </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Social Media / Vimeo', module)
-    .add('Default', () => (
+export const Vimeo = {
+    name: 'Social Media / Vimeo',
+    render: () => (
         <StoryWrapper>
             <WidgetVimeo
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-// #endregion
-
-// #region GOOGLE
-
-storiesOf('Widgets | Google / Docs', module)
-    .add('Default', () => <StoryWrapper>
+export const Docs = {
+    name: 'Google / Docs',
+    render: () => <StoryWrapper>
         <WidgetGoogle
             data={{
                 url: 'https://docs.google.com/document/d/1kRWn-fYwOgjh7g-i5zSw8MQ_U3LF0a3zpX7CpTWrK2w/edit?usp=sharing'
             }}
         />
     </StoryWrapper>
-    )
+}
 
-storiesOf('Widgets | Google / Slides', module)
-    .add('Default', () => (
+export const Slides = {
+    name: 'Google / Slides',
+    render: () => (
         <StoryWrapper>
             <WidgetGoogle
                 data={{
@@ -133,10 +136,12 @@ storiesOf('Widgets | Google / Slides', module)
                 }}
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Google / Sheets', module)
-    .add('Default', () => (
+export const Sheets = {
+    name: 'Google / Sheets',
+    render: () => (
         <StoryWrapper>
             <WidgetGoogle
                 data={{
@@ -145,52 +150,60 @@ storiesOf('Widgets | Google / Sheets', module)
                 }}
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-// #endregion
-
-// #region TIME
-
-storiesOf('Widgets | Times / Calendar', module)
-    .add('Default', () => (
+export const Calendar = {
+    name: 'Times / Calendar',
+    render: () => (
         <StoryWrapper>
             <WidgetCalendar
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Times / Clock', module)
-    .add('Default', () => (
+export const Clock = {
+    name: 'Times / Clock',
+    render: () => (
         <StoryWrapper>
             <WidgetClock
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
-    .add('World Clock', () => (
+    )
+}
+
+export const ClockWorldClock = {
+    name: 'Times / Clock / World Clock',
+    render: () => (
         <StoryWrapper>
             <WidgetWorldClock
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Times / Countdown', module)
-    .add('Default', () => (
+export const Countdown = {
+    name: 'Times / Countdown',
+    render: () => (
         <StoryWrapper>
             <WidgetCountdown
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
+    )
+}
 
-storiesOf('Widgets | Misc / News')
-    .add('Default', () => (
+export const News = {
+    name: 'Misc / News',
+    render: () => (
         <StoryWrapper>
             <WidgetNews
                 isEditable={ true }
             />
         </StoryWrapper>
-    ))
-// #endregion
+    )
+}
