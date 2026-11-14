@@ -4,7 +4,7 @@
   "description": "A container for the vision platform apps",
   "main": "index.js",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "homepage": ".",
   "build": {
