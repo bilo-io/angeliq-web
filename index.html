@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>vis-ion | studio</title>
+        <title>AngeliQ | Midnite Studio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="AngeliQ online dating service — discovery, matches, and chat with Midnite UI themes.">
+        <meta property="og:title" content="AngeliQ | Midnite Studio">
+        <meta property="og:description" content="Curated dating, day or midnite. Discovery, matches, and real-time chat with Midnite UI Light, Dark, System &amp; Time themes.">
+        <meta property="og:image" content="/og.jpg">
+        <meta property="og:logo" content="/logo.svg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="/og.jpg">
         <link rel="shortcut icon" type="image/x-icon" href="/src/assets/favicon.ico"/>
         <link href="https://fonts.googleapis.com/css?family=Dosis|Quicksand&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <!-- No-flash theme init: the same logic as Midnite UI's themeInitScript
+             (src/vendor/midnite-ui/theme/theme-script.ts, storage key 'midnite.theme'). -->
+        <script>(function(){try{var k='midnite.theme';var s=localStorage.getItem(k);var p=(s==='light'||s==='dark'||s==='time')?s:'system';var r;if(p==='system'){r=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}else if(p==='time'){var h=new Date().getHours();r=(h>=8&&h<18)?'light':'dark';}else{r=p;}var c=document.documentElement.classList;if(r==='dark')c.add('dark');else c.remove('dark');document.documentElement.style.colorScheme=r;}catch(e){}})();</script>
     </head>
     <body>
         <div id="angelic-app-root"></div>

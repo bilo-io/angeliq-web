@@ -1,0 +1,32 @@
+<svg width="720" height="246" viewBox="0 0 720 246" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mdn-ring" x1="12" y1="12" x2="234" y2="234" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="48%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#FF4165" />
+    </linearGradient>
+    <linearGradient id="angeliq-word" x1="280" y1="60" x2="680" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fafafa" />
+      <stop offset="55%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#FF4165" />
+    </linearGradient>
+    <linearGradient id="angeliq-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF4165" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+
+  <!-- Midnite emblem mark -->
+  <circle cx="122.5" cy="123" r="118" fill="#09090b" stroke="url(#mdn-ring)" stroke-width="5" />
+  <path
+    d="M122.716 159.689C143.174 159.689 159.655 143.208 159.655 122.75C159.655 102.292 143.174 85.8113 122.716 85.8113C102.258 85.8113 85.7773 102.292 85.7773 122.75C86.3456 143.208 102.826 159.689 122.716 159.689Z"
+    fill="#fafafa" />
+  <path
+    d="M122.498 12.5C110.732 12.5 99.9892 14.0347 89.2463 17.6157V79.0046C98.4545 71.8426 110.22 67.75 122.498 67.75C153.192 67.75 177.747 92.8171 177.747 123C177.747 153.694 153.192 178.25 122.498 178.25C91.8041 178.25 67.249 153.694 67.249 123V27.3356C34.5089 46.2639 12 82.0741 12 123C12 184.389 61.6218 233.5 122.498 233.5C183.886 233.5 232.996 183.877 232.996 123C233.508 62.1227 183.886 12.5 122.498 12.5Z"
+    fill="url(#mdn-ring)" />
+  <circle cx="123" cy="122.5" r="20" fill="#FF4165" />
+
+  <!-- AngeliQ wordmark + Midnite subtitle -->
+  <text x="276" y="138" font-family="'Dancing Script', 'Inter', system-ui, -apple-system, sans-serif" font-size="96" font-weight="800" letter-spacing="-2" fill="url(#angeliq-word)">AngeliQ</text>
+  <text x="282" y="184" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="600" letter-spacing="6" fill="#a1a1aa">MIDNITE STUDIO · DATING</text>
+</svg>

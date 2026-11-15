@@ -1,0 +1,57 @@
+/* Midnite UI: design tokens (light/dark) and the Tailwind utilities the vendored primitives use. */
+@import '../vendor/midnite-ui/styles/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset legacy global `button { @extend .button; }` inside the Midnite ThemeMenu so Midnite's Tailwind utilities win. */
+.theme-menu-shell button {
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  color: hsl(var(--card-foreground));
+  font-weight: 500;
+  line-height: inherit;
+  text-align: left;
+}
+.theme-menu-shell button[aria-haspopup='menu'] {
+  color: hsl(var(--muted-foreground));
+}
+.theme-menu-shell button:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.theme-menu-shell button[aria-checked='true'] {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Bridge Midnite dark-mode tokens into the legacy SCSS app shell and pages. */
+html.dark body,
+html.dark .page:not(.gradient-background) {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+html.dark .app-bar,
+html.dark .mobile-navbar {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground));
+  border-color: hsl(var(--border));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark .vision-app-menu {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+}
+
+html.dark .divider {
+  background-color: hsl(var(--border));
+}
+
+html.dark input,
+html.dark textarea.aq-input {
+  color: hsl(var(--foreground)) !important;
+}
+
