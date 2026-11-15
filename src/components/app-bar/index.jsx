@@ -5,7 +5,7 @@ export const AppBar = ({
 }) => {
     return (
         <div
-            className="flex-row space-between"
+            className="app-bar flex-row space-between"
             style={{
                 position: 'absolute',
                 zIndex: 11,

@@ -11,4 +11,4 @@ To update, re-copy from a newer commit and bump the hash above.
 | `lib/cn.ts`, `components/button.tsx`, `components/theme-toggle.tsx`, `theme/theme-script.ts`, `styles/tokens.css` | no |
 | `theme/theme-context.tsx` | **yes**: `localStorage` access wrapped in `try/catch` (`[vendored adaptation]`) |
 
-Site wiring lives outside this folder: `src/styles/midnite.css`, `tailwind.config.ts`, `src/components/theme-menu.jsx`.
+Site wiring lives outside this folder: `src/styles/midnite.css`, `tailwind.config.ts`, `postcss.config.mjs`, `src/components/theme-menu.jsx`.
