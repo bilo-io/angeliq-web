@@ -60,7 +60,7 @@
     "test:cli": "$(npm bin)/start-server-and-test dev 8080 ci:cypress",
     "test:cli:chrome": "$(npm bin)/start-server-and-test dev 8080 ci:cypress:chrome",
     "clean": "npm run clean:dist",
-    "clean:dist": "rm -rf dist && rm -rf public",
+    "clean:dist": "rm -rf dist",
     "clean:docs": "rm -rf demo",
     "posttest:ci": "npm run ci:cypress:coverage",
     "postci:cypress:coverage": "$(npm bin)/codecov -t $CODECOV_TOKEN -f '.nyc_output/processinfo/index.json'",
