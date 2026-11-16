@@ -17,7 +17,7 @@ describe('App', () => {
         render(<Provider store={store}><App /></Provider>)
         await act(async () => { vi.advanceTimersByTime(2000) })
         vi.useRealTimers()
-        expect(await screen.findByText(/Angelique/, {}, { timeout: 5000 })).toBeInTheDocument()
+        expect(await screen.findByText(/Hana/, {}, { timeout: 5000 })).toBeInTheDocument()
         expect(window.location.pathname).toBe('/app/search')
     }, 10000)
 })
