@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import { withRouter } from 'util/with-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as firebase from 'firebase'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 import { AUTH } from 'util/firebase'
 // #endregion Modules
 

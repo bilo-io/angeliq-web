@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RGL, { WidthProvider } from 'react-grid-layout'
+import RGL, { WidthProvider } from 'react-grid-layout/legacy'
 const ReactGridLayout = WidthProvider(RGL)
 
 export class Grid extends Component {

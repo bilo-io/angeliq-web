@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MasterChart } from 'charts'
-import RGL, { WidthProvider } from 'react-grid-layout'
+import RGL, { WidthProvider } from 'react-grid-layout/legacy'
 const ReactGridLayout = WidthProvider(RGL)
 
 export class ChartsGrid extends Component {

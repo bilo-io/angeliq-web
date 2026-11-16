@@ -1,4 +1,5 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 const FirebaseDevKit = (config) => {
     if (!firebase.apps.length) {

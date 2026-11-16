@@ -6,7 +6,7 @@ import saturate from 'util/saturate'
 import Empty from './empty'
 import AddTile from './add-tile'
 import { getApp, getAppIcon } from 'widgets/util'
-import RGL, { WidthProvider } from 'react-grid-layout'
+import RGL, { WidthProvider } from 'react-grid-layout/legacy'
 import tiles from 'widgets/tiles'
 const ReactGridLayout = WidthProvider(RGL)
 const tileTypes = tiles.map(tile => tile.type)
