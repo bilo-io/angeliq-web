@@ -1,0 +1,6 @@
+artifact
+dist
+docs
+cypress
+node_modules
+.git
