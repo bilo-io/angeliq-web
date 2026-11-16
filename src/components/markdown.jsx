@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 // import 'highlight.js/styles/vs.css'
 // import Loader, {LoaderType} from 'components/loader'
 // var axios = require('axios')
-import marked from 'marked'
+import { marked } from 'marked'
 import highlight from 'highlight.js'
 
 marked.setOptions({

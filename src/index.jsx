@@ -12,7 +12,6 @@ import App from './app'
 import pkg from '../package.json'
 import store from './store'
 import { ThemeProvider } from './vendor/midnite-ui/theme/theme-context'
-import ThemeMenu from './components/theme-menu'
 
 console.log(`${pkg.name}: v${pkg.version}`)
 
@@ -20,7 +19,6 @@ createRoot(document.getElementById('angelic-app-root')).render(
     <Provider store={store}>
         <ThemeProvider>
             <App />
-            <ThemeMenu />
         </ThemeProvider>
     </Provider>
 )
