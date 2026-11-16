@@ -55,3 +55,40 @@ html.dark textarea.aq-input {
   color: hsl(var(--foreground)) !important;
 }
 
+
+/* ── The Midnite shell, in both themes ─────────────────────────────────────── */
+body,
+.page:not(.gradient-background) {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+.app-bar-midnite button,
+.mobile-navbar-midnite button {
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  line-height: inherit;
+}
+.app-bar-midnite button:hover,
+.mobile-navbar-midnite button:not(.aq-main-tab):hover,
+.mobile-navbar-midnite button.aq-active {
+  background-color: hsl(var(--accent));
+}
+.aq-wordmark {
+  font-family: 'Dancing Script', cursive;
+  background: linear-gradient(100deg, #ff4165, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mobile-navbar-midnite .aq-main-tab {
+  background: linear-gradient(135deg, #ff4165, #a855f7);
+}
+.mobile-navbar-midnite .aq-active {
+  color: #ff4165;
+}
+.vision-app-menu {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border-right: 1px solid hsl(var(--border));
+}

@@ -1,31 +1,30 @@
 import React from 'react'
 import FAIcon from 'react-fontawesome'
-export const AppBar = ({
-    toggleAppMenu
-}) => {
-    return (
-        <div
-            className="app-bar flex-row space-between"
-            style={{
-                position: 'absolute',
-                zIndex: 11,
-                width: '100%',
-                height: '3rem',
-                boxShadow: '0px 3px 10px #999',
-                backgroundColor: '#fff'
+import { ThemeToggle } from '../../vendor/midnite-ui/components/theme-toggle'
 
-            }}>
-            <button style={{ padding: '0.5rem', marginLeft: '0.5rem', backgroundColor: 'transparent' }} onClick={toggleAppMenu}>
-                <FAIcon name='bars' />
-            </button>
-            <div style={{ fontFamily: '\'Dancing Script\', cursive', lineHeight: '3rem', fontSize: '1.2rem', color: '#FF4165' }}>
-                    AngeliQ
-            </div>
-            <button style={{ padding: '0.5rem', marginRight: '0.5rem', backgroundColor: 'transparent' }}>
+// The Midnite app bar: a blurred card strip with the menu, the wordmark, the theme toggle and help.
+export const AppBar = ({ toggleAppMenu }) => (
+    <header className="app-bar-midnite absolute inset-x-0 top-0 z-[11] flex h-12 items-center justify-between border-b border-border/80 bg-card/90 px-2 text-foreground backdrop-blur-md">
+        <button
+            type="button"
+            aria-label="Open the menu"
+            onClick={toggleAppMenu}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+            <FAIcon name='bars' />
+        </button>
+        <div className="aq-wordmark select-none text-xl leading-none">AngeliQ</div>
+        <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <button
+                type="button"
+                aria-label="Help"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
                 <FAIcon name='question-circle' />
             </button>
         </div>
-    )
-}
+    </header>
+)
 
 export default AppBar
