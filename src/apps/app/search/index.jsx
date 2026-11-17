@@ -10,7 +10,7 @@ import FAIcon from 'react-fontawesome'
 import {
     Card
 } from 'components'
-import { ProfileCard } from '../profile/card'
+import { DateCard } from 'components/aq/date-card'
 
 // #region Misc
 import {
@@ -34,7 +34,6 @@ const mapActionsToProps = dispatch => bindActionCreators({
 
 export const Search = ({ user }) => {
     const [activeIndex, setActiveIndex] = React.useState(0)
-    const [isMobile, setIsMobile] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
 
     const changeIndex = (diff) => {
@@ -44,29 +43,21 @@ export const Search = ({ user }) => {
         setTimeout(() => setLoading(false), 500)
     }
 
-    React.useEffect(() => {
-        setIsMobile(visualViewport.width <= 512)
-    }, [visualViewport.width])
-
     return (
         <div className='page'>
             {/* <div className='page-header padded flex-row space-between'>
                 </div> */}
-            <div className='divider horizontal' />
-            <div className='padded'>
-                <div style={{ marginTop: '3rem' }} />
+            <div className='mx-auto max-w-sm px-4 pb-24 pt-16'>
                 {
                     loading
-                        ? <div className='loader' />
-                        : <ProfileCard
-                            fixed={ isMobile }
-                            user={data[activeIndex]}
-                            actions
-                            onSwipeLeft={() => changeIndex(+1)}
-                            onSwipeRight={() => changeIndex(+1)}
+                        ? <div className='loader' style={{ marginTop: '30vh' }} />
+                        : <DateCard
+                            profile={data[activeIndex]}
+                            onPass={() => changeIndex(+1)}
+                            onLike={() => changeIndex(+1)}
+                            onSuper={() => changeIndex(+1)}
                         />
                 }
-                <div style={{ height: '2rem' }} />
             </div>
         </div>
     )

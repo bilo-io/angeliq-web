@@ -11,6 +11,25 @@ import {
     Tabs
 } from 'components'
 import ChatThread from './thread'
+import { Link, useNavigate } from 'react-router'
+import { Video } from 'lucide-react'
+
+const LAST = ['See you at 19:30 at Café Lumière?', 'Haha, that sounds perfect', 'Sunrise surf this weekend?', 'Tapas on Friday?', 'What are you reading?']
+
+const ChatRow = ({ profile, onOpen }) => (
+    <div className='flex items-center gap-3 rounded-2xl px-2 py-2 hover:bg-accent'>
+        <button type='button' onClick={onOpen} className='aq-bare flex min-w-0 flex-1 items-center gap-3 text-left'>
+            <img src={profile.images[0]} alt='' className='h-14 w-14 shrink-0 rounded-full object-cover' />
+            <span className='min-w-0'>
+                <span className='block font-semibold text-foreground'>{profile.name}, {profile.age}</span>
+                <span className='block truncate text-sm font-normal text-muted-foreground'>{LAST[profile.id % LAST.length]}</span>
+            </span>
+        </button>
+        <Link to={`/app/video/${profile.id}`} aria-label={`Video call ${profile.name}`} className='aq-gradient inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full shadow'>
+            <Video className='h-4 w-4' />
+        </Link>
+    </div>
+)
 
 // #region Misc
 import {
@@ -34,6 +53,7 @@ const mapActionsToProps = dispatch => bindActionCreators({
 
 export const Chat = () => {
     const [chatProfile, setChatProfile] = useState(null)
+    const navigate = useNavigate()
 
     return (
         <div className='page no-scrollbar'>
@@ -42,26 +62,14 @@ export const Chat = () => {
                 defaultTab='chats'
                 keys={['chats', 'matches']}
                 chats={
-                    <div className='padded'>
-                        {
-                            data.slice(0, 2).map((profile, i) => (
-                                <div key={ i } onClick={() => setChatProfile(profile) }>
-                                    <Avatar user={{ email: profile.name, name: profile.name, image: profile.images[0] }} />
-                                </div>
-                            ))
-                        }
+                    <div className='mx-auto max-w-xl px-2 py-2'>
+                        {data.slice(0, 2).map((profile) => <ChatRow key={profile.id} profile={profile} onOpen={() => setChatProfile(profile)} />)}
                     </div>
                 }
                 matches={
                     <div>
-                        <div className='padded'>
-                            {
-                                data.slice(2).map((profile, i) => (
-                                    <div key={ i } onClick={() => setChatProfile(profile) }>
-                                        <Avatar user={{ email: profile.name, name: profile.name, image: profile.images[0] }} />
-                                    </div>
-                                ))
-                            }
+                        <div className='mx-auto max-w-xl px-2 py-2'>
+                            {data.slice(2).map((profile) => <ChatRow key={profile.id} profile={profile} onOpen={() => setChatProfile(profile)} />)}
                         </div>
                     </div>
                 }
@@ -79,7 +87,7 @@ export const Chat = () => {
                 <ChatThread
                     user={null}
                     otherUser={chatProfile}
-                    goOnDate={() => console.log('go on date with ', chatProfile)}
+                    goOnDate={() => navigate('/app/date')}
                     goBack={() => setChatProfile(null)}
                 />
             </div>
