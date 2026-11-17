@@ -176,8 +176,8 @@ export const App = (props) => {
                                     onToggle={ toggleAppMenu }
                                     items={[
                                         {
-                                            icon: 'cog',
-                                            path: '/app/settings'
+                                            icon: 'shield',
+                                            path: '/app/date'
                                         },
                                         {
                                             icon: 'heart',

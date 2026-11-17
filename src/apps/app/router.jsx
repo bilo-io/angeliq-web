@@ -10,6 +10,8 @@ const Chats = React.lazy(() => import(/* webpackChunkName: "chat" */ './chats'))
 const Likes = React.lazy(() => import(/* webpackChunkName: "likes" */ './likes'))
 const Profile = React.lazy(() => import(/* webpackChunkName: "profile" */ './profile'))
 const Settings = React.lazy(() => import(/* webpackChunkName: "settings" */ './settings'))
+const DateHub = React.lazy(() => import('./date'))
+const VideoCall = React.lazy(() => import('./video'))
 const Search = React.lazy(() => import(/* webpackChunkName: "search" */ './search'))
 
 // #endregion
@@ -23,6 +25,8 @@ export const AppRouter = () => (
         <Route path='search' element={ <Search /> } />
         <Route path='chat' element={ <Chats /> } />
         <Route path='profile' element={ <Profile /> } />
+        <Route path='date' element={ <DateHub /> } />
+        <Route path='video/:id' element={ <VideoCall /> } />
         <Route path='*' element={ null } />
     </Routes>
 )

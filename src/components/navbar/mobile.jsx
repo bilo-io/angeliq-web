@@ -1,6 +1,8 @@
 import React from 'react'
 import { withRouter } from 'util/with-router'
-import FAIcon from 'react-fontawesome'
+import { Heart, MessageCircle, Search, ShieldCheck, User } from 'lucide-react'
+
+const ICONS = { shield: ShieldCheck, heart: Heart, comment: MessageCircle, user: User, search: Search }
 import appLogo from 'img/angelic-white.png'
 
 // The Midnite bottom bar: blurred card strip, the main tab raised on the brand gradient.
@@ -32,7 +34,7 @@ export const Navbar = ({ items, history }) => {
                             isActive ? 'aq-active bg-accent' : 'text-muted-foreground hover:bg-accent hover:text-foreground'
                         }`}
                     >
-                        <FAIcon name={item.icon} />
+                        {React.createElement(ICONS[item.icon] || Search, { className: 'h-5 w-5', 'aria-hidden': true })}
                     </button>
                 )
             })}
