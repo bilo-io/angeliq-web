@@ -3,8 +3,9 @@ import { BadgeCheck, Heart, Star, X } from 'lucide-react'
 
 // The swipe card from the AngeliQ mockups: photo (tap to flip), name, age, tags and the three actions.
 export const DateCard = ({ profile, onPass, onLike, onSuper }) => {
-    const [photo, setPhoto] = React.useState(0)
-    React.useEffect(() => setPhoto(0), [profile.id])
+    const [state, setState] = React.useState({ id: profile.id, photo: 0 })
+    const photo = state.id === profile.id ? state.photo % profile.images.length : 0
+    const setPhoto = (next) => setState({ id: profile.id, photo: next(photo) })
     const tags = (profile.interests || '').split(',').map((t) => t.trim()).filter(Boolean)
 
     return (

@@ -19,7 +19,7 @@ const Section = ({ icon: Icon, title, children }) => (
 
 // Tonight's date: the ride there and back, the friend who knows, and the silent SOS.
 export const DateHub = () => {
-    const match = profiles[tonight.matchId]
+    const match = profiles.find((p) => p.id === tonight.matchId) || profiles[0]
     const [shared, setShared] = React.useState(false)
     const [sos, setSos] = React.useState(false)
     const [holding, setHolding] = React.useState(false)

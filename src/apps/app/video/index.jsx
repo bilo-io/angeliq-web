@@ -15,9 +15,17 @@ export const VideoCall = () => {
 
     React.useEffect(() => {
         if (!camera) return undefined
+        if (!navigator.mediaDevices?.getUserMedia) { setCamera(false); return undefined }
         let live
-        navigator.mediaDevices?.getUserMedia({ video: true }).then((s) => { live = s; setStream(s) }).catch(() => setCamera(false))
-        return () => { live?.getTracks().forEach((t) => t.stop()); setStream(null) }
+        let cancelled = false
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((s) => {
+                if (cancelled) { s.getTracks().forEach((t) => t.stop()); return }
+                live = s
+                setStream(s)
+            })
+            .catch(() => { if (!cancelled) setCamera(false) })
+        return () => { cancelled = true; live?.getTracks().forEach((t) => t.stop()); setStream(null) }
     }, [camera])
     React.useEffect(() => { if (self.current) self.current.srcObject = stream }, [stream])
 
